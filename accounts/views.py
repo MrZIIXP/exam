@@ -160,7 +160,12 @@ class RegisterView(View):
 
         if form.is_valid():
             try:
-                user = form.save()
+                user = form.save(commit=False)
+                user.email = form.cleaned_data['email']
+                user.first_name = form.cleaned_data['username']
+                user.username = form.cleaned_data['username']
+                user.set_password(form.cleaned_data['password1'])
+                user.save()
                 send_verification_email(request, user)
                 messages.success(
                     request,

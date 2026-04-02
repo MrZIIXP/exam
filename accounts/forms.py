@@ -112,12 +112,14 @@ class RegisterForm(forms.ModelForm):
     
     def save(self, commit=True):
         user = super().save(commit=False)
-        user.username = self.cleaned_data['email']
+        user.username = self.cleaned_data['username']
         user.first_name = self.cleaned_data['username']
+        user.email = self.cleaned_data['email']
         user.set_password(self.cleaned_data['password1'])
-        assygn_role(user, 'User')
         if commit:
             user.save()
+            assygn_role(user, 'User')
+            self.save_m2m()
         return user
 
 
