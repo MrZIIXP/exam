@@ -1,0 +1,415 @@
+{% extends './base.html' %} {% load static %} {% block content %}
+<main class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto">
+	<!-- Header Section: Editorial Hero -->
+	<header class="mb-20">
+		<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+			<div class="lg:col-span-8">
+				<span
+					class="text-[#d72222] font-bold tracking-[0.3em] uppercase text-xs mb-4 block dark:text-[#d72222]"
+					>Private Sales</span
+				>
+				<h1
+					class="editorial-title text-6xl md:text-8xl font-extrabold text-white mb-6 uppercase"
+				>
+					List Your <br />Legacy.
+				</h1>
+			</div>
+			<div class="lg:col-span-4 pb-4">
+				<p
+					class="text-on-surface-variant text-lg leading-relaxed max-w-sm dark:text-[#c2c6d6]"
+				>
+					Our Shadow Gallery connects exceptional vehicles with the world's most
+					discerning collectors. Begin your listing journey below.
+				</p>
+			</div>
+		</div>
+	</header>
+
+	<!-- Multi-Step Form Layout -->
+	<section class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+		<!-- Sidebar Info -->
+		<div class="lg:col-span-4 space-y-6">
+			<div class="relative rounded-xl overflow-hidden h-64 group">
+				<img
+					class="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+					alt="dramatic low angle shot of a vintage porsche"
+					src="https://lh3.googleusercontent.com/aida-public/AB6AXuBx5TlvWw7rvfZcf7iwisKtvC1WcXbGHvUa8Bcmy5Uhb81AfZxc7LnIOyxvgJdwXuv-MDQIIM0dQ-7rbILJyKo7NWpjmfA8xIpbu-xU_HCKyuKLV1-Igdguh0386lfjSdfXUil4If3Pl7H7vb57H0mz1_XT4I1YN3n9anznTBOjafYXaMulIfcvOwYlPh_Rx5yLyRp5du0x2bMEIjPpMnsp93hihJtEi8PQTCsTcf_fmHh22-qkgH17BVDOuLGChQnlWD4nm8gViLmO"
+				/>
+				<div
+					class="absolute inset-0 bg-gradient-to-t from-[#0b1326] via-transparent to-transparent dark:from-[#0b1326]"
+				></div>
+				<div class="absolute bottom-6 left-6">
+					<p class="text-white font-bold text-lg">Expert Appraisal</p>
+					<p class="text-[#b9b9b9] text-sm dark:text-[#8c909f]">
+						Concierge support included.
+					</p>
+				</div>
+			</div>
+
+			<!-- Tips Card -->
+			<div class="bg-surface-container-low rounded-xl p-6 dark:bg-[#111827]">
+				<h4
+					class="text-white font-bold text-sm mb-3 flex items-center gap-2 dark:text-[#dae2fd]"
+				>
+					<span class="material-symbols-outlined text-[#d72222] text-base"
+						>lightbulb</span
+					>
+					Pro Tip
+				</h4>
+				<p
+					class="text-xs text-on-surface-variant leading-relaxed dark:text-[#c2c6d6]"
+				>
+					High-quality images and detailed specifications increase your
+					listing's visibility by up to 85% in our Shadow Gallery network.
+				</p>
+			</div>
+		</div>
+
+		<!-- Primary Form Area -->
+		<div class="lg:col-span-8 space-y-6">
+			<form method="post" enctype="multipart/form-data" class="space-y-6">
+				{% csrf_token %}
+
+				<!-- Vehicle Identification Section -->
+				<div
+					class="bg-surface-container p-10 rounded-xl shadow-[0_32px_64px_rgba(0,0,0,0.3)] dark:bg-[#111827]"
+				>
+					<h2
+						class="text-2xl font-bold text-white mb-8 flex items-center gap-3 dark:text-[#dae2fd]"
+					>
+						<span class="material-symbols-outlined text-[#d72222]"
+							>directions_car</span
+						>
+						Vehicle Identification
+					</h2>
+					<div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
+						<!-- Brand -->
+						<div class="group">
+							<label
+								class="block text-[#b9b9b9] text-xs uppercase tracking-widest font-bold mb-2 group-focus-within:text-[#d72222] transition-colors dark:text-[#8c909f] dark:group-focus-within:text-[#d72222]"
+							>
+								Manufacturer
+							</label>
+							<select
+								name="brand"
+								class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant focus:border-[#d72222] focus:ring-0 text-white py-3 px-0 transition-all appearance-none cursor-pointer dark:bg-[#060e20] dark:text-[#dae2fd] dark:border-[#374151]"
+							>
+								<option value="">Select Brand</option>
+								{% for brand in brands %}
+								<option value="{{ brand.id }}">{{ brand.name }}</option>
+								{% endfor %}
+							</select>
+						</div>
+
+						<!-- Title -->
+						<div class="group">
+							<label
+								class="block text-[#b9b9b9] text-xs uppercase tracking-widest font-bold mb-2 group-focus-within:text-[#d72222] transition-colors dark:text-[#8c909f] dark:group-focus-within:text-[#d72222]"
+							>
+								Model Title
+							</label>
+							<input
+								name="title"
+								class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant focus:border-[#d72222] focus:ring-0 text-white py-3 px-0 placeholder:text-surface-variant transition-all dark:bg-[#060e20] dark:text-[#dae2fd] dark:border-[#374151] dark:placeholder:text-[#6b7280]"
+								placeholder="e.g. DBS Superleggera"
+								type="text"
+							/>
+						</div>
+
+						<!-- Body Style -->
+						<div class="group">
+							<label
+								class="block text-[#b9b9b9] text-xs uppercase tracking-widest font-bold mb-2 group-focus-within:text-[#d72222] transition-colors dark:text-[#8c909f] dark:group-focus-within:text-[#d72222]"
+							>
+								Body Style
+							</label>
+							<select
+								name="body_style"
+								class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant focus:border-[#d72222] focus:ring-0 text-white py-3 px-0 transition-all appearance-none cursor-pointer dark:bg-[#060e20] dark:text-[#dae2fd] dark:border-[#374151]"
+							>
+								<option value="">Select Body Style</option>
+								{% for style in body_styles %}
+								<option value="{{ style.id }}">{{ style.name }}</option>
+								{% endfor %}
+							</select>
+						</div>
+
+						<!-- Transmission -->
+						<div class="group">
+							<label
+								class="block text-[#b9b9b9] text-xs uppercase tracking-widest font-bold mb-2 group-focus-within:text-[#d72222] transition-colors dark:text-[#8c909f] dark:group-focus-within:text-[#d72222]"
+							>
+								Transmission
+							</label>
+							<select
+								name="transmission"
+								class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant focus:border-[#d72222] focus:ring-0 text-white py-3 px-0 transition-all appearance-none cursor-pointer dark:bg-[#060e20] dark:text-[#dae2fd] dark:border-[#374151]"
+							>
+								<option value="">Select Transmission</option>
+								{% for trans in transmissions %}
+								<option value="{{ trans.id }}">{{ trans.name }}</option>
+								{% endfor %}
+							</select>
+						</div>
+
+						<!-- Speed -->
+						<div class="group">
+							<label
+								class="block text-[#b9b9b9] text-xs uppercase tracking-widest font-bold mb-2 group-focus-within:text-[#d72222] transition-colors dark:text-[#8c909f] dark:group-focus-within:text-[#d72222]"
+							>
+								Top Speed (mph)
+							</label>
+							<input
+								name="speed"
+								class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant focus:border-[#d72222] focus:ring-0 text-white py-3 px-0 placeholder:text-surface-variant transition-all dark:bg-[#060e20] dark:text-[#dae2fd] dark:border-[#374151]"
+								placeholder="e.g. 211"
+								type="number"
+							/>
+						</div>
+
+						<!-- Price -->
+						<div class="group">
+							<label
+								class="block text-[#b9b9b9] text-xs uppercase tracking-widest font-bold mb-2 group-focus-within:text-[#d72222] transition-colors dark:text-[#8c909f] dark:group-focus-within:text-[#d72222]"
+							>
+								Listing Price (USD)
+							</label>
+							<input
+								name="price"
+								class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant focus:border-[#d72222] focus:ring-0 text-white py-3 px-0 placeholder:text-surface-variant transition-all dark:bg-[#060e20] dark:text-[#dae2fd] dark:border-[#374151]"
+								placeholder="e.g. 215900"
+								type="number"
+								step="0.01"
+							/>
+						</div>
+					</div>
+				</div>
+
+				<!-- Description Section -->
+				<div
+					class="bg-surface-container p-10 rounded-xl shadow-[0_32px_64px_rgba(0,0,0,0.3)] dark:bg-[#111827]"
+				>
+					<h2
+						class="text-2xl font-bold text-white mb-8 flex items-center gap-3 dark:text-[#dae2fd]"
+					>
+						<span class="material-symbols-outlined text-[#d72222]"
+							>description</span
+						>
+						Vehicle Description
+					</h2>
+					<textarea
+						name="description"
+						rows="6"
+						class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant focus:border-[#d72222] focus:ring-0 text-white py-3 px-0 placeholder:text-surface-variant transition-all dark:bg-[#060e20] dark:text-[#dae2fd] dark:border-[#374151]"
+						placeholder="Describe the vehicle's condition, history, special features, and any additional details..."
+					></textarea>
+				</div>
+
+				<!-- Premium Media Upload Area -->
+				<div class="bg-surface-container-low p-10 rounded-xl dark:bg-[#0f172a]">
+					<div class="flex justify-between items-center mb-8">
+						<div>
+							<h2
+								class="text-2xl font-bold text-white flex items-center gap-3 dark:text-[#dae2fd]"
+							>
+								<span class="material-symbols-outlined text-[#d72222]"
+									>photo_camera</span
+								>
+								Cinematic Assets
+							</h2>
+							<p
+								class="text-on-surface-variant text-sm mt-1 dark:text-[#c2c6d6]"
+							>
+								Upload high-resolution images for the gallery.
+							</p>
+						</div>
+						<span
+							class="text-[#d72222] text-xs font-bold uppercase tracking-tighter"
+							>Min. 1 Photo</span
+						>
+					</div>
+
+					<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+						<!-- Image 1 (Required) -->
+						<label
+							class="aspect-square rounded-lg border-2 border-dashed border-outline-variant flex flex-col items-center justify-center cursor-pointer hover:bg-surface-container-high hover:border-[#d72222]/50 transition-all group dark:border-[#374151] dark:hover:border-[#d72222]/50"
+						>
+							<span
+								class="material-symbols-outlined text-4xl text-surface-variant group-hover:text-[#d72222] dark:text-[#6b7280] dark:group-hover:text-[#d72222]"
+								>add_a_photo</span
+							>
+							<p
+								class="text-[10px] text-surface-variant uppercase font-bold mt-2 dark:text-[#8c909f]"
+							>
+								Main Image
+							</p>
+							<input
+								type="file"
+								name="image_1"
+								class="hidden"
+								accept="image/*"
+								required
+							/>
+						</label>
+
+						<!-- Image 2 -->
+						<label
+							class="aspect-square rounded-lg border-2 border-dashed border-outline-variant flex flex-col items-center justify-center cursor-pointer hover:bg-surface-container-high hover:border-[#d72222]/50 transition-all group dark:border-[#374151] dark:hover:border-[#d72222]/50"
+						>
+							<span
+								class="material-symbols-outlined text-4xl text-surface-variant group-hover:text-[#d72222] dark:text-[#6b7280] dark:group-hover:text-[#d72222]"
+								>add_a_photo</span
+							>
+							<p
+								class="text-[10px] text-surface-variant uppercase font-bold mt-2 dark:text-[#8c909f]"
+							>
+								Front View
+							</p>
+							<input
+								type="file"
+								name="image_2"
+								class="hidden"
+								accept="image/*"
+							/>
+						</label>
+
+						<!-- Image 3 -->
+						<label
+							class="aspect-square rounded-lg border-2 border-dashed border-outline-variant flex flex-col items-center justify-center cursor-pointer hover:bg-surface-container-high hover:border-[#d72222]/50 transition-all group dark:border-[#374151] dark:hover:border-[#d72222]/50"
+						>
+							<span
+								class="material-symbols-outlined text-4xl text-surface-variant group-hover:text-[#d72222] dark:text-[#6b7280] dark:group-hover:text-[#d72222]"
+								>add_a_photo</span
+							>
+							<p
+								class="text-[10px] text-surface-variant uppercase font-bold mt-2 dark:text-[#8c909f]"
+							>
+								Rear View
+							</p>
+							<input
+								type="file"
+								name="image_3"
+								class="hidden"
+								accept="image/*"
+							/>
+						</label>
+
+						<!-- Image 4 -->
+						<label
+							class="aspect-square rounded-lg border-2 border-dashed border-outline-variant flex flex-col items-center justify-center cursor-pointer hover:bg-surface-container-high hover:border-[#d72222]/50 transition-all group dark:border-[#374151] dark:hover:border-[#d72222]/50"
+						>
+							<span
+								class="material-symbols-outlined text-4xl text-surface-variant group-hover:text-[#d72222] dark:text-[#6b7280] dark:group-hover:text-[#d72222]"
+								>add_a_photo</span
+							>
+							<p
+								class="text-[10px] text-surface-variant uppercase font-bold mt-2 dark:text-[#8c909f]"
+							>
+								Interior
+							</p>
+							<input
+								type="file"
+								name="image_4"
+								class="hidden"
+								accept="image/*"
+							/>
+						</label>
+					</div>
+
+					<div
+						class="mt-8 p-6 bg-surface-container-lowest rounded-lg border border-outline-variant/20 flex items-center gap-4 dark:bg-[#060e20] dark:border-[#374151]"
+					>
+						<span
+							class="material-symbols-outlined text-[#811ece] dark:text-[#a855f7]"
+							>info</span
+						>
+						<p
+							class="text-xs text-on-surface-variant italic leading-relaxed dark:text-[#c2c6d6]"
+						>
+							For professional photography services in your area, contact our
+							<span class="text-[#d72222] font-bold cursor-pointer"
+								>Shadow Concierge</span
+							>
+							team.
+						</p>
+					</div>
+				</div>
+
+				<!-- Action Bar -->
+				<div
+					class="flex flex-col md:flex-row gap-4 items-center justify-between pt-6"
+				>
+					<a
+						href="{% url 'my_listings' %}"
+						class="text-[#b9b9b9] hover:text-[#d72222] text-xs font-bold uppercase tracking-widest transition-all dark:text-[#8c909f] dark:hover:text-[#d72222]"
+					>
+						Cancel
+					</a>
+					<div class="flex gap-4 w-full md:w-auto">
+						<button
+							type="reset"
+							class="flex-1 md:flex-none px-10 py-4 rounded-lg bg-surface-container-high text-white font-bold hover:bg-surface-bright transition-all active:scale-95 dark:bg-[#1f2937] dark:text-[#dae2fd] dark:hover:bg-[#374151]"
+						>
+							Reset
+						</button>
+						<button
+							type="submit"
+							class="flex-1 md:flex-none px-12 py-4 rounded-lg bg-gradient-to-r from-[#d72222] to-[#811ece] text-white font-bold hover:opacity-90 transition-all active:scale-95 shadow-xl shadow-[#d72222]/20"
+						>
+							List Vehicle
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</section>
+</main>
+
+<script>
+	// Preview images before upload
+	document.querySelectorAll('input[type="file"]').forEach(input => {
+		input.addEventListener('change', function (e) {
+			const file = e.target.files[0]
+			if (file) {
+				const reader = new FileReader()
+				const parentLabel = this.closest('label')
+				const icon = parentLabel.querySelector('.material-symbols-outlined')
+				const text = parentLabel.querySelector('p')
+
+				reader.onload = function (e) {
+					// Create or update preview image
+					let preview = parentLabel.querySelector('.preview-image')
+					if (!preview) {
+						preview = document.createElement('img')
+						preview.className =
+							'preview-image absolute inset-0 w-full h-full object-cover rounded-lg'
+						parentLabel.style.position = 'relative'
+						parentLabel.style.border = 'none'
+						parentLabel.style.overflow = 'hidden'
+						parentLabel.insertBefore(preview, parentLabel.firstChild)
+					}
+					preview.src = e.target.result
+					if (icon) icon.style.opacity = '0'
+					if (text) text.style.opacity = '0'
+				}
+				reader.readAsDataURL(file)
+			}
+		})
+	})
+</script>
+
+<style>
+	.editorial-title {
+		background: linear-gradient(135deg, #ffffff 0%, #b9b9b9 100%);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+	.dark .editorial-title {
+		background: linear-gradient(135deg, #dae2fd 0%, #8c909f 100%);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+</style>
+{% endblock %}

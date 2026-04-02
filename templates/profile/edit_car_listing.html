@@ -1,0 +1,471 @@
+{% extends './base.html' %} {% load static %} {% block content %}
+<main class="min-h-screen w-full bg-surface">
+	<div>
+		<!-- Hero Breadcrumb & Actions -->
+		<div class="flex justify-between items-end mb-10">
+			<div>
+				<div
+					class="flex items-center gap-2 text-slate-500 text-xs font-semibold tracking-widest uppercase mb-2"
+				>
+					<span>Inventory</span>
+					<span class="material-symbols-outlined text-xs">chevron_right</span>
+					<span class="text-primary">Edit Listing</span>
+				</div>
+				<h2
+					class="text-4xl font-extrabold font-manrope tracking-tighter text-on-surface"
+				>
+					{{ car.title }}
+				</h2>
+				<p class="text-on-surface-variant font-medium mt-1">
+					Listing ID: ZEN-{{ car.id|stringformat:"05d" }}
+				</p>
+			</div>
+			<div class="flex gap-4">
+				<a
+					href="{% url 'my_listings' %}"
+					class="px-6 py-3 rounded-full border border-outline-variant text-on-surface font-semibold hover:bg-surface-container-low transition-colors flex items-center gap-2"
+				>
+					<span class="material-symbols-outlined text-lg">arrow_back</span>
+					Back to Listings
+				</a>
+				<button
+					type="submit"
+					form="edit-car-form"
+					class="px-8 py-3 rounded-full gradient-button text-white font-bold shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all flex items-center gap-2"
+				>
+					<span class="material-symbols-outlined text-lg">save</span>
+					Save Changes
+				</button>
+			</div>
+		</div>
+
+		<!-- Editor Grid -->
+		<form id="edit-car-form" method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+			<div class="grid grid-cols-12 gap-8">
+				<!-- Left Column: Primary Data -->
+				<div class="col-span-12 lg:col-span-8 space-y-8">
+					<!-- Basic Information Section -->
+					<section class="bg-surface-container-lowest p-8 rounded-xl shadow-sm">
+						<div class="flex items-center gap-3 mb-6">
+							<div class="p-2 bg-blue-50 text-primary rounded-lg">
+								<span class="material-symbols-outlined">info</span>
+							</div>
+							<h3 class="text-xl font-bold font-manrope tracking-tight">
+								Basic Information
+							</h3>
+						</div>
+						<div class="grid grid-cols-2 gap-6">
+							<div class="space-y-2">
+								<label
+									class="text-xs font-semibold text-on-surface-variant tracking-wider uppercase"
+									>Brand</label
+								>
+								<select
+									name="brand"
+									class="w-full px-4 py-3 bg-surface-container-highest border-none rounded-lg focus:ring-2 focus:ring-primary/40 transition-all"
+								>
+									{% for brand in brands %}
+									<option
+										value="{{ brand.id }}"
+										{%
+										if
+										car.brand.id=""
+										="brand.id"
+										%}selected{%
+										endif
+										%}
+									>
+										{{ brand.name }}
+									</option>
+									{% endfor %}
+								</select>
+							</div>
+							<div class="space-y-2">
+								<label
+									class="text-xs font-semibold text-on-surface-variant tracking-wider uppercase"
+									>Title</label
+								>
+								<input
+									type="text"
+									name="title"
+									value="{{ car.title }}"
+									class="w-full px-4 py-3 bg-surface-container-highest border-none rounded-lg focus:ring-2 focus:ring-primary/40 transition-all"
+								/>
+							</div>
+							<div class="space-y-2">
+								<label
+									class="text-xs font-semibold text-on-surface-variant tracking-wider uppercase"
+									>Body Style</label
+								>
+								<select
+									name="body_style"
+									class="w-full px-4 py-3 bg-surface-container-highest border-none rounded-lg focus:ring-2 focus:ring-primary/40 transition-all"
+								>
+									{% for style in body_styles %}
+									<option
+										value="{{ style.id }}"
+										{%
+										if
+										car.body_style.id=""
+										="style.id"
+										%}selected{%
+										endif
+										%}
+									>
+										{{ style.name }}
+									</option>
+									{% endfor %}
+								</select>
+							</div>
+							<div class="space-y-2">
+								<label
+									class="text-xs font-semibold text-on-surface-variant tracking-wider uppercase"
+									>Transmission</label
+								>
+								<select
+									name="transmission"
+									class="w-full px-4 py-3 bg-surface-container-highest border-none rounded-lg focus:ring-2 focus:ring-primary/40 transition-all"
+								>
+									{% for trans in transmissions %}
+									<option
+										value="{{ trans.id }}"
+										{%
+										if
+										car.transmission.id=""
+										="trans.id"
+										%}selected{%
+										endif
+										%}
+									>
+										{{ trans.name }}
+									</option>
+									{% endfor %}
+								</select>
+							</div>
+							<div class="space-y-2">
+								<label
+									class="text-xs font-semibold text-on-surface-variant tracking-wider uppercase"
+									>Speed (mph)</label
+								>
+								<input
+									type="number"
+									name="speed"
+									value="{{ car.speed }}"
+									class="w-full px-4 py-3 bg-surface-container-highest border-none rounded-lg focus:ring-2 focus:ring-primary/40 transition-all"
+								/>
+							</div>
+						</div>
+					</section>
+
+					<!-- Media Section -->
+					<section class="bg-surface-container-lowest p-8 rounded-xl shadow-sm">
+						<div class="flex justify-between items-center mb-6">
+							<div class="flex items-center gap-3">
+								<div class="p-2 bg-blue-50 text-primary rounded-lg">
+									<span class="material-symbols-outlined">image</span>
+								</div>
+								<h3 class="text-xl font-bold font-manrope tracking-tight">
+									Media Gallery
+								</h3>
+							</div>
+						</div>
+						<div class="grid grid-cols-4 gap-4 mb-6">
+							<!-- Main Image -->
+							<div
+								class="col-span-2 row-span-2 relative group overflow-hidden rounded-xl {% if car.image_1 %}border-2 border-primary{% endif %}"
+							>
+								{% if car.image_1 %}
+								<img
+									class="w-full h-full object-cover"
+									src="{{ car.image_1.url }}"
+									alt="{{ car.title }}"
+								/>
+								{% else %}
+								<div
+									class="w-full h-48 bg-surface-container-highest flex items-center justify-center"
+								>
+									<span
+										class="material-symbols-outlined text-4xl text-on-surface-variant"
+										>image</span
+									>
+								</div>
+								{% endif %}
+								<div
+									class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2"
+								>
+									<label
+										class="bg-white/20 backdrop-blur-md p-2 rounded-full text-white hover:bg-white hover:text-primary transition-all cursor-pointer"
+									>
+										<span class="material-symbols-outlined">edit</span>
+										<input
+											type="file"
+											name="image_1"
+											class="hidden"
+											accept="image/*"
+										/>
+									</label>
+								</div>
+								{% if car.image_1 %}
+								<div
+									class="absolute bottom-3 left-3 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded-md uppercase tracking-widest"
+								>
+									Main Cover
+								</div>
+								{% endif %}
+							</div>
+
+							<!-- Image 2 -->
+							<div
+								class="aspect-square relative group overflow-hidden rounded-xl bg-surface-container-highest"
+							>
+								{% if car.image_2 %}
+								<img
+									class="w-full h-full object-cover"
+									src="{{ car.image_2.url }}"
+									alt="{{ car.title }} 2"
+								/>
+								{% else %}
+								<div class="w-full h-full flex items-center justify-center">
+									<span
+										class="material-symbols-outlined text-3xl text-on-surface-variant"
+										>add_photo_alternate</span
+									>
+								</div>
+								{% endif %}
+								<div
+									class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2"
+								>
+									<label
+										class="bg-white/20 backdrop-blur-md p-2 rounded-full text-white hover:bg-white hover:text-primary transition-all cursor-pointer"
+									>
+										<span class="material-symbols-outlined">edit</span>
+										<input
+											type="file"
+											name="image_2"
+											class="hidden"
+											accept="image/*"
+										/>
+									</label>
+								</div>
+							</div>
+
+							<!-- Image 3 -->
+							<div
+								class="aspect-square relative group overflow-hidden rounded-xl bg-surface-container-highest"
+							>
+								{% if car.image_3 %}
+								<img
+									class="w-full h-full object-cover"
+									src="{{ car.image_3.url }}"
+									alt="{{ car.title }} 3"
+								/>
+								{% else %}
+								<div class="w-full h-full flex items-center justify-center">
+									<span
+										class="material-symbols-outlined text-3xl text-on-surface-variant"
+										>add_photo_alternate</span
+									>
+								</div>
+								{% endif %}
+								<div
+									class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2"
+								>
+									<label
+										class="bg-white/20 backdrop-blur-md p-2 rounded-full text-white hover:bg-white hover:text-primary transition-all cursor-pointer"
+									>
+										<span class="material-symbols-outlined">edit</span>
+										<input
+											type="file"
+											name="image_3"
+											class="hidden"
+											accept="image/*"
+										/>
+									</label>
+								</div>
+							</div>
+
+							<!-- Image 4 -->
+							<div
+								class="aspect-square relative group overflow-hidden rounded-xl bg-surface-container-highest"
+							>
+								{% if car.image_4 %}
+								<img
+									class="w-full h-full object-cover"
+									src="{{ car.image_4.url }}"
+									alt="{{ car.title }} 4"
+								/>
+								{% else %}
+								<div class="w-full h-full flex items-center justify-center">
+									<span
+										class="material-symbols-outlined text-3xl text-on-surface-variant"
+										>add_photo_alternate</span
+									>
+								</div>
+								{% endif %}
+								<div
+									class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2"
+								>
+									<label
+										class="bg-white/20 backdrop-blur-md p-2 rounded-full text-white hover:bg-white hover:text-primary transition-all cursor-pointer"
+									>
+										<span class="material-symbols-outlined">edit</span>
+										<input
+											type="file"
+											name="image_4"
+											class="hidden"
+											accept="image/*"
+										/>
+									</label>
+								</div>
+							</div>
+						</div>
+						<p class="text-xs text-on-surface-variant mt-2">
+							Click on any image to change it. Supported formats: JPG, PNG, WebP
+						</p>
+					</section>
+
+					<!-- Description Section -->
+					<section class="bg-surface-container-lowest p-8 rounded-xl shadow-sm">
+						<div class="flex items-center gap-3 mb-6">
+							<div class="p-2 bg-blue-50 text-primary rounded-lg">
+								<span class="material-symbols-outlined">description</span>
+							</div>
+							<h3 class="text-xl font-bold font-manrope tracking-tight">
+								Detailed Description
+							</h3>
+						</div>
+						<div class="space-y-4">
+							<textarea
+								name="description"
+								rows="8"
+								class="w-full px-4 py-3 bg-surface-container-highest border-none rounded-lg focus:ring-2 focus:ring-primary/40 transition-all font-body text-sm leading-relaxed"
+							>
+{{ car.description|default:'' }}</textarea
+							>
+						</div>
+					</section>
+				</div>
+
+				<!-- Right Column: Contextual Sidebar -->
+				<div class="col-span-12 lg:col-span-4 space-y-8">
+					<!-- Pricing Section -->
+					<section class="bg-surface-container-lowest p-8 rounded-xl shadow-sm">
+						<div class="flex items-center gap-3 mb-6">
+							<div class="p-2 bg-blue-50 text-primary rounded-lg">
+								<span class="material-symbols-outlined">payments</span>
+							</div>
+							<h3 class="text-xl font-bold font-manrope tracking-tight">
+								Pricing
+							</h3>
+						</div>
+						<div class="space-y-6">
+							<div class="space-y-2">
+								<label
+									class="text-xs font-semibold text-on-surface-variant tracking-wider uppercase"
+									>Listing Price (USD)</label
+								>
+								<div class="relative">
+									<span
+										class="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant font-bold"
+										>$</span
+									>
+									<input
+										type="number"
+										name="price"
+										value="{{ car.price }}"
+										class="w-full pl-8 pr-4 py-3 bg-surface-container-highest border-none rounded-lg focus:ring-2 focus:ring-primary/40 transition-all font-manrope font-bold text-lg"
+									/>
+								</div>
+							</div>
+						</div>
+					</section>
+
+
+					<!-- Info Box -->
+					<div
+						class="p-6 rounded-xl border border-outline-variant/10 bg-surface-dim/20"
+					>
+						<h4
+							class="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 mb-4"
+						>
+							Listing Information
+						</h4>
+						<div class="space-y-3">
+							<div class="flex justify-between">
+								<span class="text-xs text-on-surface-variant">Created</span>
+								<span class="text-xs font-medium">{{ car.created_at }}</span>
+							</div>
+							<div class="flex justify-between">
+								<span class="text-xs text-on-surface-variant"
+									>Last Updated</span
+								>
+								<span class="text-xs font-medium"
+									>{{ car.created_at|timesince }} ago</span
+								>
+							</div>
+							<div class="flex justify-between">
+								<span class="text-xs text-on-surface-variant">Listing ID</span>
+								<span class="text-xs font-medium">#{{ car.id }}</span>
+							</div>
+						</div>
+					</div>
+
+					<!-- Danger Zone -->
+					<div class="p-6 rounded-xl border border-error/20 bg-error/5">
+						<h4
+							class="text-[10px] font-bold uppercase tracking-[0.2em] text-error mb-4"
+						>
+							Danger Zone
+						</h4>
+						<a
+							href="{% url 'delete_listing' car.id %}"
+							onclick="
+								return confirm(
+									'Are you sure you want to delete this listing? This action cannot be undone.',
+								)
+							"
+							class="w-full flex items-center justify-center gap-2 px-4 py-2 bg-error/10 text-error rounded-lg hover:bg-error/20 transition-all text-sm font-semibold"
+						>
+							<span class="material-symbols-outlined text-sm">delete</span>
+							Delete Listing Permanently
+						</a>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</main>
+
+<script>
+	// Preview images before upload
+	document.querySelectorAll('input[type="file"]').forEach(input => {
+		input.addEventListener('change', function (e) {
+			const file = e.target.files[0]
+			if (file) {
+				const reader = new FileReader()
+				const parentDiv = this.closest('.relative')
+				const img = parentDiv.querySelector('img')
+
+				reader.onload = function (e) {
+					if (img) {
+						img.src = e.target.result
+					} else {
+						const newImg = document.createElement('img')
+						newImg.className = 'w-full h-full object-cover'
+						newImg.src = e.target.result
+						const placeholder = parentDiv.querySelector(
+							'.flex.items-center.justify-center',
+						)
+						if (placeholder) {
+							placeholder.remove()
+						}
+						parentDiv.insertBefore(newImg, parentDiv.firstChild)
+					}
+				}
+				reader.readAsDataURL(file)
+			}
+		})
+	})
+</script>
+{% endblock %}

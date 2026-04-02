@@ -1,0 +1,130 @@
+{% extends './base.html' %} {% load static %} {% block content %}
+<main class="flex-1 px-8 lg:px-12 py-10 max-w-7xl mx-auto w-full">
+	<header
+		class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12"
+	>
+		<div>
+			<h1
+				class="text-5xl lg:text-6xl font-black tracking-tighter text-white mb-2 leading-none uppercase dark:text-[#dae2fd]"
+			>
+				Archived Listings
+			</h1>
+			<p class="text-slate-400 font-medium dark:text-[#8c909f]">
+				Manage your vault and permanently retired inventory.
+			</p>
+		</div>
+		<div class="flex gap-4">
+			<a
+				href="{% url 'empty_trash' %}"
+				onclick="
+					return confirm(
+						'Are you sure? This will permanently delete all archived listings.',
+					)
+				"
+				class="bg-error-container/20 hover:bg-error-container/40 text-error px-6 py-3 rounded-lg flex items-center gap-2 transition-all font-bold text-sm"
+			>
+				<span class="material-symbols-outlined">delete_sweep</span>
+				Empty Trash
+			</a>
+		</div>
+	</header>
+
+	<!-- Grid Layout for Items -->
+	{% if deleted_cars %}
+	<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+		{% for car in deleted_cars %}
+		<div
+			class="bg-surface-container-low rounded-xl overflow-hidden group hover:bg-surface-container-high dark:bg-[#111827] dark:hover:bg-[#1f2937] transition-all duration-300"
+		>
+			<div class="relative h-48 w-full overflow-hidden">
+				{% if car.image_1 %}
+				<img
+					class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 opacity-60 group-hover:opacity-100"
+					src="{{ car.image_1.url }}"
+					alt="{{ car.title }}"
+				/>
+				{% else %}
+				<div
+					class="w-full h-full bg-surface-container-highest flex items-center justify-center"
+				>
+					<span
+						class="material-symbols-outlined text-5xl text-on-surface-variant"
+						>image_not_supported</span
+					>
+				</div>
+				{% endif %}
+				<div
+					class="absolute top-4 right-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded text-[10px] font-bold text-white tracking-widest uppercase"
+				>
+					Archived {{ car.created_at|timesince }} ago
+				</div>
+			</div>
+			<div class="p-6">
+				<div class="flex justify-between items-start mb-4">
+					<div>
+						<h3
+							class="text-lg font-bold text-white tracking-tight leading-tight dark:text-[#dae2fd]"
+						>
+							{{ car.title }}
+						</h3>
+						<p
+							class="text-slate-500 text-sm font-medium tracking-tight dark:text-[#8c909f]"
+						>
+							{{ car.brand.name }} • {{ car.body_style.name }}
+						</p>
+					</div>
+					<span class="text-primary font-black text-lg tracking-tighter"
+						>${{ car.price }}</span
+					>
+				</div>
+				<div class="flex items-center gap-3 pt-6">
+					<a
+						href="{% url 'restore_listing' car.id %}"
+						class="flex-1 bg-primary text-on-primary py-2.5 rounded-lg font-bold text-xs uppercase tracking-widest hover:scale-[0.98] transition-transform flex items-center justify-center gap-2"
+					>
+						<span class="material-symbols-outlined text-sm"
+							>settings_backup_restore</span
+						>
+						Restore
+					</a>
+					<a
+						href="{% url 'permanent_delete' car.id %}"
+						onclick="
+							return confirm(
+								'Permanently delete this listing? This action cannot be undone.',
+							)
+						"
+						class="w-12 h-10 border border-white/10 text-error hover:bg-error/10 rounded-lg flex items-center justify-center transition-all"
+					>
+						<span class="material-symbols-outlined">delete_forever</span>
+					</a>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+	{% else %}
+	<!-- Empty State -->
+	<div class="flex flex-col items-center justify-center py-20 text-center">
+		<span
+			class="material-symbols-outlined text-7xl text-on-surface-variant/30 mb-4"
+			>delete_sweep</span
+		>
+		<h3
+			class="font-headline text-xl font-bold text-on-surface mb-2 dark:text-[#dae2fd]"
+		>
+			Trash is Empty
+		</h3>
+		<p class="text-on-surface-variant text-sm dark:text-[#c2c6d6]">
+			Deleted listings will appear here for 30 days before automatic removal.
+		</p>
+		<a
+			href="{% url 'my_listings' %}"
+			class="mt-6 px-6 py-3 bg-primary text-on-primary rounded-lg font-bold hover:opacity-90 transition-all"
+		>
+			View Active Listings
+		</a>
+	</div>
+	{% endif %}
+</main>
+{% endblock %}

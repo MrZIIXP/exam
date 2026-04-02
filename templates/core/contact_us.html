@@ -1,0 +1,344 @@
+{% extends 'core/base.html' %} {% block style %}
+<style>
+	.material-symbols-outlined {
+		font-variation-settings:
+			'FILL' 0,
+			'wght' 300,
+			'GRAD' 0,
+			'opsz' 24;
+	}
+	.hero-gradient {
+		background: linear-gradient(
+			135deg,
+			rgba(11, 19, 38, 0.9) 0%,
+			rgba(11, 19, 38, 0.4) 100%
+		);
+	}
+	.glass-panel {
+		background: rgba(34, 42, 61, 0.7);
+		backdrop-filter: blur(20px);
+	}
+	.text-glow:hover {
+		text-shadow: 0 0 8px rgba(173, 198, 255, 0.4);
+	}
+</style>
+{% endblock %} {% block content %}
+<main class="pt-24">
+	<section class="relative h-[716px] flex items-center px-8 overflow-hidden">
+		<div class="absolute inset-0 z-0">
+			<img
+				alt="Luxury car detail"
+				class="w-full h-full object-cover"
+				data-alt="close-up of a high-end luxury sports car headlight with sleek chrome details in a dimly lit cinematic studio setting"
+				src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_pOOTlO35svAi3ou3eW7RznqnGTorNjX8hJ5RYSRStJ9_5uiQDgKDH8qEKkdvej60YdeHoPqQi3kjnqL8M2HOXW7lWzYVF3M40jcTQVLKGve34habZVMnsnrKg_IcsTGsQXcaTYIVo_wZb3unI9zhGsEHK-SqUvyobiBuGGgII6Si97Ak38PWxImBuGsuSObGC3NNIkQ2RhOuf3k4tqn_P1-qB99Kc703nMmc0mvOsfzp4xrd_1qOiFc8pcp6NiJILxW5TpwR-XU7"
+			/>
+			<div
+				class="absolute inset-0 bg-gradient-to-br  from-[#ffffff]/80 to-[#ffffff]/60 dark:from-[#0b1326]/90 dark:to-[#0b1326]/40"
+			></div>
+		</div>
+		<div class="relative z-10 w-full max-w-screen-2xl mx-auto">
+			<div class="max-w-3xl">
+				<span
+					class="text-blue-500 dark:text-red-500 font-bold tracking-[0.3em] uppercase text-sm mb-4 block"
+					>Personal Assistance</span
+				>
+				<h1
+					class="text-6xl md:text-8xl font-black tracking-tighter text-on-surface mb-6 leading-[0.9] dark:text-[#dae2fd]"
+				>
+					Concierge Support
+				</h1>
+				<p
+					class="text-xl text-on-surface-variant font-light leading-relaxed max-w-xl dark:text-[#c2c6d6]"
+				>
+					At Zenith, luxury is a standard, but service is a craft. Connect with
+					our bespoke assistance team for tailored guidance on your automotive
+					journey.
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="py-32 px-8 bg-surface dark:bg-[#0b1326]">
+		<div
+			class="max-w-screen-2xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-start"
+		>
+			<div class="space-y-12">
+				<div>
+					<h2
+						class="text-4xl font-bold tracking-tight mb-4 dark:text-[#dae2fd]"
+					>
+						Direct Inquiry
+					</h2>
+					<p class="text-on-surface-variant max-w-md dark:text-[#c2c6d6]">
+						Our specialists are available to provide technical specifications,
+						availability updates, and heritage insights.
+					</p>
+				</div>
+				<form class="space-y-8">
+					<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+						<div class="space-y-2">
+							<label
+								class="text-xs uppercase tracking-widest text-outline font-bold dark:text-[#8c909f]"
+								>Full Name</label
+							>
+							<input
+								class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant focus:border-blue-600 dark:focus:border-red-500 focus:ring-0 transition-colors py-4 px-0 text-on-surface placeholder:text-outline-variant dark:bg-[#060e20] dark:text-[#dae2fd] dark:border-[#424754]"
+								placeholder="Julian Vane"
+								type="text"
+							/>
+						</div>
+						<div class="space-y-2">
+							<label
+								class="text-xs uppercase tracking-widest text-outline font-bold dark:text-[#8c909f]"
+								>Email Address</label
+							>
+							<input
+								class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant focus:border-blue-600 dark:focus:border-red-500 focus:ring-0 transition-colors py-4 px-0 text-on-surface placeholder:text-outline-variant dark:bg-[#060e20] dark:text-[#dae2fd] dark:border-[#424754]"
+								placeholder="concierge@vane.com"
+								type="email"
+							/>
+						</div>
+					</div>
+					<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+						<div class="space-y-2">
+							<label
+								class="text-xs uppercase tracking-widest text-outline font-bold dark:text-[#8c909f]"
+								>Interested Model</label
+							>
+							<select
+								class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant focus:border-blue-600 dark:focus:border-red-500 focus:ring-0 transition-colors py-4 px-0 text-on-surface appearance-none dark:bg-[#060e20] dark:text-[#dae2fd] dark:border-[#424754]"
+							>
+								<option>Select Model</option>
+								<option>The Zenith One</option>
+								<option>Aura GT</option>
+								<option>Eclipse Roadster</option>
+								<option>Heritage Classic</option>
+							</select>
+						</div>
+						<div class="space-y-2">
+							<label
+								class="text-xs uppercase tracking-widest text-outline font-bold dark:text-[#8c909f]"
+								>Inquiry Type</label
+							>
+							<select
+								class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant focus:border-blue-600 dark:focus:border-red-500 focus:ring-0 transition-colors py-4 px-0 text-on-surface appearance-none dark:bg-[#060e20] dark:text-[#dae2fd] dark:border-[#424754]"
+							>
+								<option>General Support</option>
+								<option>Custom Commission</option>
+								<option>Technical Service</option>
+								<option>Event Access</option>
+							</select>
+						</div>
+					</div>
+					<div class="space-y-2">
+						<label
+							class="text-xs uppercase tracking-widest text-outline font-bold dark:text-[#8c909f]"
+							>Your Message</label
+						>
+						<textarea
+							class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant focus:border-blue-600 dark:focus:border-red-500 focus:ring-0 transition-colors py-4 px-0 text-on-surface placeholder:text-outline-variant resize-none dark:bg-[#060e20] dark:text-[#dae2fd] dark:border-[#424754]"
+							placeholder="Describe your requirements..."
+							rows="4"
+						></textarea>
+					</div>
+					<button
+						class="group flex items-center gap-4 text-blue-500 dark:text-red-500 font-bold uppercase tracking-widest text-sm hover:gap-6 transition-all duration-300"
+					>
+						Transmit Message
+						<span class="material-symbols-outlined">arrow_forward</span>
+					</button>
+				</form>
+			</div>
+			<div class="relative">
+				<div class="aspect-[4/5] rounded-xl overflow-hidden shadow-2xl">
+					<img
+						alt="Interior of showroom"
+						class="w-full h-full object-cover"
+						data-alt="ultra-modern minimalist car showroom with dark marble floors and soft overhead linear lighting reflecting on a silver sports car"
+						src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEr-x0XiseRoF0Jw--jooBIU82UfdaCgfGdEMN1qsHPectMhETtfXAgMsOcul11ki4388Msb-8NT7uH-I2PyphwEi-W1pBqX6NIrphA2Hr2d9kyIy27op5E4yHv-ec_UQUK7sTPFY1_xfP_eH6WkHYIGFOBusEP2uCJgZsRs_agfSTImp9NXb5ascqNDmqhUwryP8M5XksqXANFHJAVgkwQNZmtvttkde_FkNqsGzsqta6kKkI-lhedJGGH0zNFSeYufKR_9P9U5q9"
+					/>
+				</div>
+				<div
+					class="absolute -bottom-10 -left-10 backdrop-blur-sm bg-white/30 p-10 rounded-xl max-w-xs shadow-2xl hidden md:block dark:bg-[#222a3d]/90"
+				>
+					<span
+						class="material-symbols-outlined text-blue-600 dark:text-red-500 text-4xl mb-4"
+						style="font-variation-settings: 'FILL' 1"
+						>phone_in_talk</span
+					>
+					<h4 class="text-xl font-bold mb-2 dark:text-[#dae2fd]">
+						Priority Line
+					</h4>
+					<p
+						class="text-sm text-on-surface-variant font-light mb-4 dark:text-[#c2c6d6]"
+					>
+						Dedicated support for established Zenith owners and private
+						collection members.
+					</p>
+					<p class="text-lg font-bold dark:text-[#dae2fd]">+1 (800) ZENITH-0</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="py-32 bg-surface-container-low px-8 dark:bg-[#131b2e]">
+		<div class="max-w-screen-2xl mx-auto">
+			<div class="mb-20">
+				<h2
+					class="text-5xl font-black tracking-tighter mb-6 dark:text-[#dae2fd]"
+				>
+					Global Showrooms
+				</h2>
+				<p class="text-on-surface-variant max-w-lg dark:text-[#c2c6d6]">
+					Visit our physical manifestations of luxury across the world's most
+					iconic metropolises.
+				</p>
+			</div>
+			<div
+				class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-outline-variant/20 border border-outline-variant/20 rounded-xl overflow-hidden"
+			>
+				<!-- Showroom Card 1 -->
+				<div
+					class="bg-surface p-12 hover:bg-surface-container transition-colors duration-500 group dark:bg-[#171f33] dark:hover:bg-[#222a3d]"
+				>
+					<h3
+						class="text-2xl font-bold mb-8 flex items-center justify-between dark:text-[#dae2fd]"
+					>
+						London
+						<span
+							class="material-symbols-outlined text-blue-600 dark:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity"
+							>location_on</span
+						>
+					</h3>
+					<div class="space-y-6 text-on-surface-variant dark:text-[#c2c6d6]">
+						<div>
+							<p
+								class="text-xs uppercase tracking-widest text-outline font-bold mb-1 dark:text-[#8c909f]"
+							>
+								Address
+							</p>
+							<p class="font-light italic">
+								14-16 Bruton Pl, Mayfair<br />London W1J 6LX
+							</p>
+						</div>
+						<div>
+							<p
+								class="text-xs uppercase tracking-widest text-outline font-bold mb-1 dark:text-[#8c909f]"
+							>
+								Contact
+							</p>
+							<p class="font-light">+44 20 7491 3333</p>
+						</div>
+					</div>
+				</div>
+				<!-- Showroom Card 2 -->
+				<div
+					class="bg-surface p-12 hover:bg-surface-container transition-colors duration-500 group border-l border-outline-variant/20 dark:bg-[#171f33] dark:hover:bg-[#222a3d] dark:border-[#424754]/20"
+				>
+					<h3
+						class="text-2xl font-bold mb-8 flex items-center justify-between dark:text-[#dae2fd]"
+					>
+						Dubai
+						<span
+							class="material-symbols-outlined text-blue-600 dark:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity"
+							>location_on</span
+						>
+					</h3>
+					<div class="space-y-6 text-on-surface-variant dark:text-[#c2c6d6]">
+						<div>
+							<p
+								class="text-xs uppercase tracking-widest text-outline font-bold mb-1 dark:text-[#8c909f]"
+							>
+								Address
+							</p>
+							<p class="font-light italic">
+								Sheikh Zayed Rd, Al Quoz 1<br />Dubai, United Arab Emirates
+							</p>
+						</div>
+						<div>
+							<p
+								class="text-xs uppercase tracking-widest text-outline font-bold mb-1 dark:text-[#8c909f]"
+							>
+								Contact
+							</p>
+							<p class="font-light">+971 4 346 6877</p>
+						</div>
+					</div>
+				</div>
+				<!-- Showroom Card 3 -->
+				<div
+					class="bg-surface p-12 hover:bg-surface-container transition-colors duration-500 group border-l border-outline-variant/20 dark:bg-[#171f33] dark:hover:bg-[#222a3d] dark:border-[#424754]/20"
+				>
+					<h3
+						class="text-2xl font-bold mb-8 flex items-center justify-between dark:text-[#dae2fd]"
+					>
+						New York
+						<span
+							class="material-symbols-outlined text-blue-600 dark:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity"
+							>location_on</span
+						>
+					</h3>
+					<div class="space-y-6 text-on-surface-variant dark:text-[#c2c6d6]">
+						<div>
+							<p
+								class="text-xs uppercase tracking-widest text-outline font-bold mb-1 dark:text-[#8c909f]"
+							>
+								Address
+							</p>
+							<p class="font-light italic">
+								21-25 44th Drive<br />Long Island City, NY 11101
+							</p>
+						</div>
+						<div>
+							<p
+								class="text-xs uppercase tracking-widest text-outline font-bold mb-1 dark:text-[#8c909f]"
+							>
+								Contact
+							</p>
+							<p class="font-light">+1 212 555 0192</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="relative py-48 px-8 overflow-hidden">
+		<div class="absolute inset-0 z-0">
+			<img
+				alt="Test drive experience"
+				class="w-full h-full object-cover grayscale opacity-30 dark:opacity-40"
+				data-alt="dramatic night shot of a dark luxury car driving through a neon-lit tunnel with long exposure light trails"
+				src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOahRNFQ0TTU33DL4jswTYKoRG8TsS0sGf95xVkKML1GISutH6bo0Shx-BpwCfOlalsLy_6hWk1_iCZDSuZDcT1EmnA3GSqWxG9kZBSppja4i8Dw0Wl7MDe_Zsihi_vFDGN6CPHZJpyAmJ9TY1CjctTx_Xwp2-qUnUP64EIcEjs083LfrZRoAI2zTwTQBtymJCiuhyy0BwsQVmrdH73mEeeP2O360HDTVUVz6dGK7NnhEHG_5vqmHT9orp80r-5_6HcUI6orzUB_EA"
+			/>
+			<div class="absolute inset-0 bg-surface/90 dark:bg-[#0b1326]/90"></div>
+		</div>
+		<div class="relative z-10 max-w-4xl mx-auto text-center space-y-10">
+			<h2
+				class="text-5xl md:text-7xl font-black tracking-tighter uppercase leading-tight dark:text-[#dae2fd]"
+			>
+				Private Appointments
+			</h2>
+			<p
+				class="text-xl text-on-surface-variant font-light mx-auto max-w-2xl dark:text-[#c2c6d6]"
+			>
+				Experience the unparalleled performance and craftsmanship of Zenith in a
+				private session. Tailored test drives are available by exclusive
+				appointment only.
+			</p>
+			<div class="flex flex-col md:flex-row gap-6 justify-center">
+				<button
+					class="bg-gradient-to-br from-blue-600 to-blue-800 text-white px-12 py-5 rounded-lg font-bold uppercase tracking-[0.2em] shadow-xl hover:scale-105 transition-transform dark:from-red-500 dark:to-red-800"
+				>
+					Book Test Drive
+				</button>
+				<button
+					class="border border-outline/30 px-12 py-5 rounded-lg font-bold uppercase tracking-[0.2em] hover:bg-on-surface hover:text-surface transition-colors dark:border-[#8c909f]/30 dark:text-[#c2c6d6] dark:hover:bg-[#dae2fd] dark:hover:text-[#0b1326]"
+				>
+					View Catalogue
+				</button>
+			</div>
+		</div>
+	</section>
+</main>
+{% endblock %}

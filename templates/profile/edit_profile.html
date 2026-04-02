@@ -1,0 +1,88 @@
+{% extends 'profile/base.html' %}
+{% load static %}
+
+{% block content %}
+<main class="flex-1 overflow-y-auto bg-surface dark:bg-[#0b1326]">
+	<header class="sticky top-0 z-50 w-full bg-white/80 dark:bg-[#0b1326]/80 backdrop-blur-md px-8 py-6 flex justify-between items-center shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none">
+		<div>
+			<h1 class="text-3xl font-headline font-extrabold tracking-tight text-on-surface dark:text-[#dae2fd]">Настройки профиля</h1>
+			<p class="text-on-surface-variant font-body text-sm mt-1 dark:text-[#c2c6d6]">Управляйте своим аккаунтом</p>
+		</div>
+	</header>
+	
+	<div class="max-w-5xl mx-auto px-8 py-12">
+		<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+			<!-- Profile Section -->
+			<div class="lg:col-span-9 space-y-12">
+				<!-- Section: Personal Info -->
+				<section class="bg-surface-container-lowest p-8 rounded-2xl shadow-sm overflow-hidden dark:bg-[#171f33]" id="profile">
+					<form method="post" enctype="multipart/form-data">
+						{% csrf_token %}
+						
+						<div class="flex flex-col md:flex-row gap-12 items-start">
+							<!-- Profile Picture -->
+							<div class="shrink-0 group relative">
+								<div class="w-32 h-32 rounded-full overflow-hidden border-4 border-surface shadow-lg relative dark:border-[#1f2937]">
+									{% if profile and profile.avatar %}
+									<img id="avatar-preview" class="w-full h-full object-cover" src="{{ profile.avatar.url }}" alt="User avatar">
+									{% else %}
+									<img id="avatar-preview" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAR-muNs3bhiQtRWFWJiymt4dVHVvJNDeEmsgwawJo2OfKb-28M0MfByxCmgb4dsun_YzkTZUjsMtzl8zkikl2_MghB-_3gjkjWQoOKizAurExejKJndhqD-ChujMctzBNduAgGgw-Q5TCqqPRQdClt6kCd7__RQWSr9gnG4a_IJxis-YU3ca4LpqXH5s18Zs0xC_6tEH4oLrhRAydCKNW7Ei3SNacXGqglk3mzMNIhU648gSa37mtLhPJRTdgNv6TDzJ7JSQjGJNsz" alt="User avatar">
+									{% endif %}
+									<label class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer rounded-full">
+										<span class="material-symbols-outlined text-white">photo_camera</span>
+										<input type="file" name="avatar" class="hidden" accept="image/*" onchange="previewAvatar(this)">
+									</label>
+								</div>
+								<p class="text-center mt-3 text-xs font-label text-on-surface-variant dark:text-[#8c909f]">Нажмите для смены</p>
+							</div>
+							
+							<!-- Form Fields -->
+							<div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6">
+								<div class="space-y-2">
+									<label class="block text-xs font-label text-on-surface-variant uppercase tracking-wider dark:text-[#8c909f]">Имя</label>
+									<input name="first_name" class="w-full bg-surface-container-highest border-none rounded-xl p-4 font-body focus:ring-2 focus:ring-primary/40 focus:bg-white transition-all dark:bg-[#1f2937] dark:text-[#dae2fd] dark:focus:bg-[#374151]" type="text" value="{{ user.first_name|default:'' }}">
+								</div>
+								<div class="space-y-2">
+									<label class="block text-xs font-label text-on-surface-variant uppercase tracking-wider dark:text-[#8c909f]">Фамилия</label>
+									<input name="last_name" class="w-full bg-surface-container-highest border-none rounded-xl p-4 font-body focus:ring-2 focus:ring-primary/40 focus:bg-white transition-all dark:bg-[#1f2937] dark:text-[#dae2fd] dark:focus:bg-[#374151]" type="text" value="{{ user.last_name|default:'' }}">
+								</div>
+								<div class="space-y-2">
+									<label class="block text-xs font-label text-on-surface-variant uppercase tracking-wider dark:text-[#8c909f]">Имя пользователя</label>
+									<input class="w-full bg-surface-container-highest border-none rounded-xl p-4 font-body dark:bg-[#1f2937] dark:text-[#8c909f]" type="text" value="{{ user.username|default:'' }}" readonly disabled>
+								</div>
+								<div class="space-y-2">
+									<label class="block text-xs font-label text-on-surface-variant uppercase tracking-wider dark:text-[#8c909f]">Электронная почта</label>
+									<input class="w-full bg-surface-container-highest border-none rounded-xl p-4 font-body dark:bg-[#1f2937] dark:text-[#8c909f]" type="email" value="{{ user.email|default:'' }}" readonly disabled>
+								</div>
+								<div class="space-y-2">
+									<label class="block text-xs font-label text-on-surface-variant uppercase tracking-wider dark:text-[#8c909f]">Номер телефона</label>
+									<input name="phone" class="w-full bg-surface-container-highest border-none rounded-xl p-4 font-body focus:ring-2 focus:ring-primary/40 focus:bg-white transition-all dark:bg-[#1f2937] dark:text-[#dae2fd] dark:focus:bg-[#374151]" type="tel" value="{{ profile.phone|default:'' }}">
+								</div>
+							</div>
+						</div>
+						
+						<div class="mt-8 flex justify-end">
+							<button type="submit" class="px-8 py-3 bg-gradient-to-r from-primary to-primary-container text-white font-bold rounded-xl shadow-lg hover:shadow-primary/20 transition-all active:scale-95 dark:bg-gradient-to-br dark:from-[#d72222] dark:to-[#811ece]">
+								Сохранить изменения
+							</button>
+						</div>
+					</form>
+				</section>
+			</div>
+		</div>
+	</div>
+</main>
+
+<script>
+	function previewAvatar(input) {
+		if (input.files && input.files[0]) {
+			const reader = new FileReader();
+			reader.onload = function(e) {
+				document.getElementById('avatar-preview').src = e.target.result;
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+	
+</script>
+{% endblock %}

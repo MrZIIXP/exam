@@ -1,0 +1,519 @@
+{% load static %}
+<!doctype html>
+<html class="light" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+		<link rel="stylesheet" href="{% static 'css/dist/styles.css' %}" />
+		<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+			rel="stylesheet"
+		/>
+		<script id="tailwind-config">
+			tailwind.config = {
+				darkMode: 'class',
+				theme: {
+					extend: {
+						colors: {
+							'surface-tint': '#005bc0',
+							'secondary-container': '#d2e4fb',
+							'primary-fixed': '#d8e2ff',
+							'on-surface': '#191c1d',
+							outline: '#717786',
+							'inverse-on-surface': '#f0f1f2',
+							'primary-container': '#0070ea',
+							'on-tertiary-container': '#fffbff',
+							tertiary: '#9e3d00',
+							'on-error': '#ffffff',
+							'surface-dim': '#d9dadb',
+							'on-secondary-fixed-variant': '#38485a',
+							'on-secondary': '#ffffff',
+							'inverse-surface': '#2e3132',
+							'surface-container-low': '#f3f4f5',
+							'surface-container-highest': '#e1e3e4',
+							'on-tertiary-fixed-variant': '#7c2e00',
+							'on-error-container': '#93000a',
+							'on-primary-container': '#fefcff',
+							'on-tertiary-fixed': '#351000',
+							'error-container': '#ffdad6',
+							'on-secondary-fixed': '#0b1d2d',
+							'inverse-primary': '#adc7ff',
+							'on-tertiary': '#ffffff',
+							error: '#ba1a1a',
+							'surface-bright': '#f8f9fa',
+							'tertiary-fixed-dim': '#ffb695',
+							'surface-variant': '#e1e3e4',
+							'primary-fixed-dim': '#adc7ff',
+							'outline-variant': '#c1c6d7',
+							primary: '#0059bb',
+							'on-primary-fixed-variant': '#004493',
+							'surface-container-high': '#e7e8e9',
+							'secondary-fixed': '#d2e4fb',
+							'on-primary-fixed': '#001a41',
+							'secondary-fixed-dim': '#b7c8de',
+							secondary: '#4f6073',
+							'on-background': '#191c1d',
+							background: '#f8f9fa',
+							'tertiary-fixed': '#ffdbcc',
+							'surface-container-lowest': '#ffffff',
+							'surface-container': '#edeeef',
+							surface: '#f8f9fa',
+							'tertiary-container': '#c64f00',
+							'on-secondary-container': '#556679',
+							'on-primary': '#ffffff',
+							'on-surface-variant': '#414754',
+						},
+						fontFamily: {
+							headline: ['Manrope'],
+							body: ['Inter'],
+							label: ['Inter'],
+						},
+						borderRadius: {
+							DEFAULT: '0.125rem',
+							lg: '0.25rem',
+							xl: '0.5rem',
+							full: '0.75rem',
+						},
+					},
+				},
+			}
+		</script>
+		{% block style %}
+		<style>
+			.material-symbols-outlined {
+				font-variation-settings:
+					'FILL' 0,
+					'wght' 400,
+					'GRAD' 0,
+					'opsz' 24;
+			}
+			body {
+				font-family: 'Inter', sans-serif;
+				background-color: #f8f9fa;
+				color: #191c1d;
+				transition:
+					background-color 0.3s ease,
+					color 0.3s ease;
+			}
+			h1,
+			h2,
+			h3,
+			.font-headline {
+				font-family: 'Manrope', sans-serif;
+			}
+			.glass-nav {
+				background: rgba(248, 249, 250, 0.8);
+				backdrop-filter: blur(12px);
+				transition: background 0.3s ease;
+			}
+
+			.gradient-button {
+				background: linear-gradient(135deg, #3ea2f4 0%, #0053ec 100%);
+			}
+			.dark .gradient-button {
+				background: linear-gradient(135deg, #d10000 0%, #9c1bd4 100%);
+			}
+			.dark .bg-primary {
+				background-color: red;
+			}
+
+			.dark .text-primary {
+				color: red;
+			}
+
+			.dark .text-on-surface {
+				color: white;
+			}
+			.dark body {
+				background-color: #0b1326;
+				color: #dae2fd;
+			}
+			.dark .glass-nav {
+				background: rgba(11, 19, 38, 0.8);
+			}
+			.dark .text-slate-900 {
+				color: #dae2fd;
+			}
+			.dark .text-slate-600 {
+				color: #c2c6d6;
+			}
+			.dark .text-slate-500 {
+				color: #8c909f;
+			}
+			.dark .bg-slate-50 {
+				background-color: #060e20;
+			}
+			.dark .bg-surface-container-lowest {
+				background-color: #060e20;
+			}
+			.dark .bg-surface {
+				background-color: #0b1326;
+			}
+			.dark .bg-surface-container-low {
+				background-color: #111827;
+			}
+			.dark .bg-surface-container-highest {
+				background-color: #1f2937;
+			}
+			.dark .border-slate-200 {
+				border-color: #1f2937;
+			}
+			.dark .text-on-surface-variant {
+				color: #c2c6d6;
+			}
+			.dark .bg-secondary-container {
+				background-color: #1e2a3a;
+			}
+			.dark .text-blue-700 {
+				color: red;
+			}
+			.dark .bg-surface-container {
+				background-color: #111827;
+			}
+			.dark .bg-surface-container-high {
+				background-color: #1f2937;
+			}
+			.dark .bg-surface-container-highest {
+				background-color: #374151;
+			}
+			.dark .bg-surface-container-low {
+				background-color: #1f2937;
+			}
+			.dark .bg-surface-container-lowest {
+				background-color: #060e20;
+			}
+			.dark .bg-surface-bright {
+				background-color: #0b1326;
+			}
+			.dark .border-outline-variant\/20 {
+				border-color: #374151;
+			}
+			.dark .hover\:bg-surface-container-low:hover {
+				background-color: #1f2937;
+			}
+
+			* {
+				transition: all 0.3s ease;
+			}
+
+			/* Анимация для сообщений */
+			@keyframes slideIn {
+				from {
+					opacity: 0;
+					transform: translateY(-20px);
+				}
+				to {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+
+			@keyframes slideOut {
+				from {
+					opacity: 1;
+					transform: translateY(0);
+				}
+				to {
+					opacity: 0;
+					transform: translateY(-20px);
+				}
+			}
+
+			.message-toast {
+				animation: slideIn 0.3s ease-out forwards;
+			}
+
+			.message-toast.hiding {
+				animation: slideOut 0.3s ease-out forwards;
+			}
+		</style>
+		{% endblock %}
+	</head>
+	<body class="antialiased selection:bg-primary">
+		<nav
+			class="fixed top-0 w-full z-50 glass-nav shadow-sm dark:shadow-none bg-surface/80 backdrop-blur-xl"
+		>
+			<div class="flex justify-between items-center px-8 py-4 max-w-full">
+				<div class="flex items-center gap-12">
+					<span
+						class="text-2xl font-black tracking-tighter text-slate-900 dark:text-[#dae2fd] font-manrope"
+						>LUXE <span class="text-blue-700">AUTO</span></span
+					>
+					<div class="hidden md:flex gap-8">
+						<a
+							class="text-slate-600 dark:text-[#c2c6d6] font-manrope tracking-tight font-semibold hover:text-blue-500 dark:hover:text-[#d72222] transition-colors"
+							href="{% url 'home' %}"
+							>Home</a
+						>
+						<a
+							class="text-slate-600 dark:text-[#c2c6d6] font-manrope tracking-tight font-semibold hover:text-blue-500 dark:hover:text-[#d72222] transition-colors"
+							href="{% url 'about' %}"
+							>About</a
+						>
+						<a
+							class="text-slate-600 dark:text-[#c2c6d6] font-manrope tracking-tight font-semibold hover:text-blue-500 dark:hover:text-[#d72222] transition-colors"
+							href="{% url 'catalog' %}"
+							>Catalog</a
+						>
+						<a
+							class="text-slate-600 dark:text-[#c2c6d6] font-manrope tracking-tight font-semibold hover:text-blue-500 dark:hover:text-[#d72222] transition-colors"
+							href="{% url 'contact' %}"
+							>Contact</a
+						>
+					</div>
+				</div>
+				<div class="flex items-center gap-6">
+					<div class="relative hidden lg:block">
+						<input
+							class="bg-surface-container-highest dark:bg-[#1f2937] border-none rounded-full px-6 py-2 text-sm focus:ring-2 focus:ring-primary/40 w-64 text-on-surface dark:text-[#dae2fd] placeholder:text-on-surface-variant/50 dark:placeholder:text-[#8c909f]"
+							placeholder="Search..."
+							type="text"
+						/>
+						<span
+							class="material-symbols-outlined absolute right-4 top-1/4 text-on-surface-variant dark:text-[#8c909f]"
+							>search</span
+						>
+					</div>
+					<button
+						onclick="document.documentElement.classList.toggle('dark')"
+						class="material-symbols-outlined text-slate-600 dark:text-[#c2c6d6] hover:text-blue-500 dark:hover:text-[#d72222] transition-colors"
+					>
+						dark_mode
+					</button>
+					<div
+						class="h-10 w-10 rounded-full overflow-hidden border-2 border-primary/10 dark:border-primary/30"
+					>
+						<img
+							alt="User profile avatar"
+							class="w-full h-full object-cover"
+							data-alt="close-up portrait of a professional man in a sharp suit looking confidently at the camera, clean studio lighting"
+							src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYt1odE_5BqK7NHoqizbKv-GmF2i3pl-TrRZDc8eLAq1aFqApoDGbbU1-qJ4B3STZR0vbpTa4xD0jTpLvW4ILbNSrKqkoPCe3aDHlYzeUI2t5jbCO5xu86blqNA9o7NZ0aO3dr5sDJa5UfP_tRxF-aTwX4uK2J2gB6SGqfWJ4BQQn8Zh88ABByjW3SCOjcBePMQTfFqh0ThFWJ2_YFbL1X6L9yQ5RvdfnJcX0sWSMpARgRCc0RRu0OC2SXxkrb6fR8guQ65YJXn40a"
+						/>
+					</div>
+				</div>
+			</div>
+		</nav>
+
+		<!-- Messages Container -->
+		<div
+			id="messages-container"
+			class="fixed top-24 right-4 z-50 flex flex-col gap-3 max-w-md"
+		>
+			{% if messages %} {% for message in messages %}
+			<div
+				class="message-toast rounded-lg shadow-lg overflow-hidden {% if message.tags == 'success' %}bg-green-50 dark:bg-green-900/50 border-l-4 border-green-500{% elif message.tags == 'error' %}bg-red-50 dark:bg-red-900/50 border-l-4 border-red-500{% elif message.tags == 'warning' %}bg-yellow-50 dark:bg-yellow-900/50 border-l-4 border-yellow-500{% else %}bg-blue-50 dark:bg-blue-900/50 border-l-4 border-blue-500{% endif %}"
+				data-message-id="{{ forloop.counter }}"
+			>
+				<div class="flex items-center justify-between p-4">
+					<div class="flex items-center gap-3">
+						{% if message.tags == 'success' %}
+						<span class="material-symbols-outlined text-green-500"
+							>check_circle</span
+						>
+						{% elif message.tags == 'error' %}
+						<span class="material-symbols-outlined text-red-500">error</span>
+						{% elif message.tags == 'warning' %}
+						<span class="material-symbols-outlined text-yellow-500"
+							>warning</span
+						>
+						{% else %}
+						<span class="material-symbols-outlined text-blue-500">info</span>
+						{% endif %}
+						<p
+							class="text-sm font-medium {% if message.tags == 'success' %}text-green-800 dark:text-green-200{% elif message.tags == 'error' %}text-red-800 dark:text-red-200{% elif message.tags == 'warning' %}text-yellow-800 dark:text-yellow-200{% else %}text-blue-800 dark:text-blue-200{% endif %}"
+						>
+							{{ message }}
+						</p>
+					</div>
+					<button
+						onclick="
+							this.closest('.message-toast').classList.add('hiding')
+							setTimeout(() => this.closest('.message-toast').remove(), 300)
+						"
+						class="ml-4 text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300 transition-colors"
+					>
+						<span class="material-symbols-outlined text-sm">close</span>
+					</button>
+				</div>
+				<div
+					class="h-1 bg-{% if message.tags == 'success' %}green-500{% elif message.tags == 'error' %}red-500{% elif message.tags == 'warning' %}yellow-500{% else %}blue-500{% endif %} progress-bar"
+					style="width: 100%; animation: shrink 5s linear forwards"
+				></div>
+			</div>
+			{% endfor %} {% endif %}
+		</div>
+
+		<main class="flex min-h-screen">
+			<aside
+				class="w-72 fixed left-0 top-14 bottom-0 bg-surface dark:bg-[#0b1326] px-6 py-8 hidden lg:block"
+			>
+				<div class="space-y-2">
+					<p
+						class="text-[10px] uppercase tracking-widest font-bold text-on-surface-variant/60 dark:text-[#8c909f] mb-4 px-4"
+					>
+						Account Dashboard
+					</p>
+					<a
+						class="flex items-center gap-4 px-4 py-3 rounded-xl {% if page == '/profile/' %} text-blue-700 dark:text-red-600 bg-secondary-container dark:bg-red-600/10 {% else %} text-slate-600 dark:text-[#c2c6d6] hover:bg-surface-container-low dark:hover:bg-[#1f2937] {% endif %} font-semibold transition-all"
+						href="{% url 'profile' %}"
+					>
+						<span
+							class="material-symbols-outlined"
+							style="font-variation-settings: 'FILL' 1"
+							>dashboard</span
+						>
+						<span>Overview</span>
+					</a>
+					<a
+						class="flex items-center gap-4 px-4 py-3 rounded-xl {% if page == '/profile/my-listings/' %} text-blue-700 dark:text-red-600 bg-secondary-container dark:bg-red-600/10 {% else %} text-slate-600 dark:text-[#c2c6d6] hover:bg-surface-container-low dark:hover:bg-[#1f2937] {% endif %} transition-all"
+						href="{% url 'my_listings' %}"
+					>
+						<span class="material-symbols-outlined">directions_car</span>
+						<span>My Listings</span>
+					</a>
+					<a
+						class="flex items-center gap-4 px-4 py-3 rounded-xl {% if page == '/profile/favourite/' %} text-blue-700 dark:text-red-600 bg-secondary-container dark:bg-red-600/10 {% else %} text-slate-600 dark:text-[#c2c6d6] hover:bg-surface-container-low dark:hover:bg-[#1f2937] {% endif %} transition-all"
+						href="#"
+					>
+						<span class="material-symbols-outlined">favorite</span>
+						<span>Favorites</span>
+					</a>
+					<a
+						class="flex items-center gap-4 px-4 py-3 rounded-xl {% if page == '/profile/my-deals/' %} text-blue-700 dark:text-red-600 bg-secondary-container dark:bg-red-600/10 {% else %} text-slate-600 dark:text-[#c2c6d6] hover:bg-surface-container-low dark:hover:bg-[#1f2937] {% endif %} transition-all"
+						href="{% url 'my_deals' %}"
+					>
+						<span class="material-symbols-outlined">orders</span>
+						<span>My Deals</span>
+					</a>
+					<a
+						class="flex items-center gap-4 px-4 py-3 rounded-xl {% if page == '/profile/trash/' %} text-blue-700 dark:text-red-600 bg-secondary-container dark:bg-red-600/10 {% else %} text-slate-600 dark:text-[#c2c6d6] hover:bg-surface-container-low dark:hover:bg-[#1f2937] {% endif %} transition-all"
+						href="{% url 'trash_listings' %}"
+					>
+						<span class="material-symbols-outlined">folder_delete</span>
+						<span>Trash</span>
+					</a>
+					<div class="pt-8 space-y-2">
+						<p
+							class="text-[10px] uppercase tracking-widest font-bold text-on-surface-variant/60 dark:text-[#8c909f] mb-4 px-4"
+						>
+							Preferences
+						</p>
+						<a
+							class="flex items-center gap-4 px-4 py-3 rounded-xl {% if page == '/profile/edit/' %} text-blue-700 dark:text-red-600 bg-secondary-container dark:bg-red-600/10 {% else %} text-slate-600 dark:text-[#c2c6d6] hover:bg-surface-container-low dark:hover:bg-[#1f2937] {% endif %} transition-all"
+							href="{% url 'edit_profile' %}"
+						>
+							<span class="material-symbols-outlined">settings</span>
+							<span>Settings</span>
+						</a>
+						<a
+							class="flex items-center gap-4 px-4 py-3 rounded-xl transition-all"
+							href="{% url 'logout' %}"
+						>
+							<span class="material-symbols-outlined">logout</span>
+							<span>Log Out</span>
+						</a>
+					</div>
+				</div>
+			</aside>
+			<div class="w-full pl-[20%] pt-22">{% block content %}{% endblock %}</div>
+		</main>
+
+		<footer
+			class="bg-slate-50 dark:bg-[#060e20] relative z-10 border-t-0 tonal-shift bg-surface-container-low mt-12"
+		>
+			<div
+				class="flex flex-col md:flex-row justify-between items-center px-12 py-12 w-full font-inter text-sm antialiased"
+			>
+				<div class="mb-8 md:mb-0 text-center md:text-left">
+					<p
+						class="font-manrope font-bold text-slate-900 dark:text-[#dae2fd] text-lg mb-2"
+					>
+						LUXE AUTO
+					</p>
+					<p class="text-slate-500 dark:text-[#8c909f] opacity-80">
+						© 2024 Zenith Automotive. The Precision Velocity Framework.
+					</p>
+				</div>
+				<div class="flex gap-8">
+					<a
+						class="text-slate-500 dark:text-[#8c909f] hover:text-slate-900 dark:hover:text-[#dae2fd] transition-opacity opacity-80 hover:opacity-100"
+						href="#"
+						>Privacy Policy</a
+					>
+					<a
+						class="text-slate-500 dark:text-[#8c909f] hover:text-slate-900 dark:hover:text-[#dae2fd] transition-opacity opacity-80 hover:opacity-100"
+						href="#"
+						>Terms of Service</a
+					>
+					<a
+						class="text-slate-500 dark:text-[#8c909f] hover:text-slate-900 dark:hover:text-[#dae2fd] transition-opacity opacity-80 hover:opacity-100"
+						href="#"
+						>Cookie Settings</a
+					>
+					<a
+						class="text-slate-500 dark:text-[#8c909f] hover:text-slate-900 dark:hover:text-[#dae2fd] transition-opacity opacity-80 hover:opacity-100"
+						href="#"
+						>Contact Support</a
+					>
+				</div>
+			</div>
+		</footer>
+
+		<script>
+			const html = document.documentElement
+			const savedTheme = localStorage.getItem('theme')
+
+			if (savedTheme === 'dark') {
+				html.classList.add('dark')
+			}
+
+			const observer = new MutationObserver(function (mutations) {
+				mutations.forEach(function (mutation) {
+					if (mutation.attributeName === 'class') {
+						if (html.classList.contains('dark')) {
+							localStorage.setItem('theme', 'dark')
+						} else {
+							localStorage.setItem('theme', 'light')
+						}
+					}
+				})
+			})
+
+			observer.observe(html, { attributes: true })
+
+			if (
+				!savedTheme &&
+				window.matchMedia &&
+				window.matchMedia('(prefers-color-scheme: dark)').matches
+			) {
+				html.classList.add('dark')
+			}
+
+			// Auto-hide messages after 5 seconds
+			setTimeout(() => {
+				document.querySelectorAll('.message-toast').forEach(toast => {
+					toast.classList.add('hiding')
+					setTimeout(() => {
+						if (toast.parentNode) toast.remove()
+					}, 300)
+				})
+			}, 5000)
+		</script>
+
+		<style>
+			@keyframes shrink {
+				from {
+					width: 100%;
+				}
+				to {
+					width: 0%;
+				}
+			}
+		</style>
+	</body>
+</html>

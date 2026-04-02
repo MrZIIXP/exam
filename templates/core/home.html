@@ -1,0 +1,370 @@
+{% extends 'core/base.html' %} {% load static %} {% block content %}
+
+<section
+	class="relative min-h-screen flex flex-col justify-center items-center pt-20 overflow-hidden dark:bg-[#0b1326]"
+>
+	<!-- Background Bleed Image -->
+	<div class="absolute inset-0 z-0">
+		<img
+			class="w-full h-full object-cover opacity-15 grayscale dark:opacity-10"
+			data-alt="Modern sports car parked in a minimalist concrete architectural setting with soft dramatic natural lighting and long shadows"
+			src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfXTjDGk-afGUuBqsdsMr2tUVXLb7v8l6efW8QNV-mkK8NB32i2wnSjIe-pViunkrL5UDSDlimf3AXcOUKnO0MTBs7qxe4EkYK28N7GLm7bBQsqbZR30UgwytAyrDMxf9RYiQOa9UzZcweKr8_HcvBuwC7X4IZ0yD6knxOnTkMiRBIFjpEKyl3ySaeH0sYTVdiB8E0z12wi4ilKuTUTiNKRhDYr01oMXWeJJCiMUOM06Odju8fInCOQeY5Ke77unQn2rrUCgmJHuTX"
+		/>
+		<div
+			class="absolute inset-0 bg-gradient-to-b from-surface via-transparent to-surface dark:from-[#0b1326] dark:via-[#0b1326]/50 dark:to-[#0b1326]"
+		></div>
+	</div>
+	<div class="relative z-10 w-full max-w-7xl px-8 text-center space-y-8">
+		<h1
+			class="text-6xl md:text-8xl font-black font-headline tracking-tighter text-on-surface leading-none dark:text-[#dae2fd]"
+		>
+			PRECISION <br />
+			<span class="text-blue-600 dark:text-red-500">VELOCITY.</span>
+		</h1>
+		<p
+			class="max-w-2xl mx-auto text-on-surface-variant font-body text-lg md:text-xl leading-relaxed dark:text-[#c2c6d6]"
+		>
+			Experience the editorial showroom approach to automotive excellence. Find
+			your next masterpiece from our curated inventory.
+		</p>
+
+		<!-- Powerful Search Bar -->
+		<form
+			method="get"
+			action="{% url 'catalog' %}"
+			class="mt-12 w-full max-w-5xl mx-auto bg-surface-container-lowest rounded-2xl p-4 shadow-2xl flex flex-col md:flex-row items-center gap-4 border-outline-variant/10 border dark:bg-[#171f33] dark:border-[#424754]/20"
+		>
+			<div class="flex-1 w-full grid grid-cols-2 lg:grid-cols-4 gap-4">
+				<div
+					class="space-y-1 text-left px-4 border-r border-outline-variant/20 dark:border-[#424754]/20"
+				>
+					<label
+						class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant dark:text-[#8c909f]"
+						>Make</label
+					>
+					<select
+						name="brand"
+						class="w-full bg-transparent border-none p-0 focus:ring-0 font-headline font-bold text-on-surface dark:text-[#dae2fd] dark:bg-transparent"
+					>
+						<option value="">All Makes</option>
+						{% for brand in brands %}
+						<option value="{{ brand.id }}">{{ brand.name }}</option>
+						{% endfor %}
+					</select>
+				</div>
+				<div
+					class="space-y-1 text-left px-4 border-r border-outline-variant/20 dark:border-[#424754]/20"
+				>
+					<label
+						class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant dark:text-[#8c909f]"
+						>Body Style</label
+					>
+					<select
+						name="body_style"
+						class="w-full bg-transparent border-none p-0 focus:ring-0 font-headline font-bold text-on-surface dark:text-[#dae2fd] dark:bg-transparent"
+					>
+						<option value="">All Styles</option>
+						{% for style in body_styles %}
+						<option value="{{ style.id }}">{{ style.name }}</option>
+						{% endfor %}
+					</select>
+				</div>
+				<div
+					class="space-y-1 text-left px-4 border-r border-outline-variant/20 dark:border-[#424754]/20"
+				>
+					<label
+						class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant dark:text-[#8c909f]"
+						>Max Price</label
+					>
+					<select
+						name="max_price"
+						class="w-full bg-transparent border-none p-0 focus:ring-0 font-headline font-bold text-on-surface dark:text-[#dae2fd] dark:bg-transparent"
+					>
+						<option value="50000">$50,000</option>
+						<option value="100000">$100,000</option>
+						<option value="200000">$200,000</option>
+						<option value="500000">$500,000+</option>
+					</select>
+				</div>
+				<div class="space-y-1 text-left px-4">
+					<label
+						class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant dark:text-[#8c909f]"
+						>Sort By</label
+					>
+					<select
+						name="sort"
+						class="w-full bg-transparent border-none p-0 focus:ring-0 font-headline font-bold text-on-surface dark:text-[#dae2fd] dark:bg-transparent"
+					>
+						<option value="-created_at">Newest First</option>
+						<option value="price">Price: Low to High</option>
+						<option value="-price">Price: High to Low</option>
+					</select>
+				</div>
+			</div>
+			<button
+				type="submit"
+				class="w-full md:w-auto px-10 py-4 bg-gradient-to-r from-blue-600 to-blue-800 text-white font-bold rounded-xl flex items-center justify-center gap-2 transition-transform active:scale-95 shadow-lg dark:bg-gradient-to-br dark:from-[#d72222] dark:to-[#811ece] dark:text-white hover:opacity-90 active:scale-95 transition-all"
+			>
+				<span class="material-symbols-outlined">search</span>
+				Find Your Car
+			</button>
+		</form>
+	</div>
+</section>
+
+<!-- Browse by Body Style Section -->
+<section class="py-24 bg-surface-container-low dark:bg-[#131b2e]">
+	<div class="max-w-7xl mx-auto px-8">
+		<div
+			class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6"
+		>
+			<div class="space-y-4">
+				<span
+					class="text-primary font-bold tracking-widest uppercase text-xs dark:text-red-500"
+					>The Collection</span
+				>
+				<h2
+					class="text-4xl md:text-5xl font-black font-headline tracking-tighter dark:text-[#dae2fd]"
+				>
+					Browse by Body Style
+				</h2>
+			</div>
+			<a
+				class="text-primary font-bold flex items-center gap-2 hover:translate-x-1 transition-transform dark:text-red-500"
+				href="{% url 'catalog' %}"
+			>
+				View All Styles
+				<span class="material-symbols-outlined">arrow_forward</span>
+			</a>
+		</div>
+		<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+			{% for style in body_styles %}
+			<a
+				href="{% url 'catalog' %}?body_style={{ style.id }}"
+				class="group cursor-pointer bg-surface-container-lowest p-8 rounded-2xl flex flex-col items-center gap-6 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 dark:bg-[#171f33] dark:hover:bg-[#222a3d]"
+			>
+				{% if style.image %}
+				<img
+					src="{{ style.image.url }}"
+					alt="{{ style.name }}"
+					class="w-12 h-12 object-contain"
+				/>
+				{% else %}
+				<span
+					class="material-symbols-outlined text-4xl text-primary transition-transform group-hover:scale-110 dark:text-red-500"
+					style="font-variation-settings: 'FILL' 1"
+				>
+					{% if style.name == 'SUV' %}airport_shuttle {% elif style.name ==
+					'Sedan' %}directions_car {% elif style.name == 'Coupe'
+					%}sports_motorsports {% elif style.name == 'Convertible' %}wb_sunny {%
+					elif style.name == 'Electric' %}electric_car {% else %}time_to_leave
+					{% endif %}
+				</span>
+				{% endif %}
+				<span class="font-headline font-bold dark:text-[#dae2fd]"
+					>{{ style.name }}</span
+				>
+			</a>
+			{% endfor %}
+		</div>
+	</div>
+</section>
+
+<!-- Featured Selection Section -->
+<section class="py-24 bg-surface dark:bg-[#0b1326]">
+	<div class="max-w-7xl mx-auto px-8">
+		<h2
+			class="text-4xl md:text-5xl font-black font-headline tracking-tighter mb-16 dark:text-[#dae2fd]"
+		>
+			Featured Selection
+		</h2>
+		<div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+			{% for car in featured_cars %} {% if forloop.first %}
+			<!-- Large Featured Card -->
+			<div
+				class="md:col-span-8 bg-surface-container-lowest rounded-[2rem] overflow-hidden group shadow-sm hover:shadow-2xl transition-all duration-500 dark:bg-[#171f33]"
+			>
+				<div class="relative h-[400px] overflow-hidden">
+					{% if car.image_1 %}
+					<img
+						class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+						src="{{ car.image_1.url }}"
+						alt="{{ car.title }}"
+					/>
+					{% else %}
+					<div
+						class="w-full h-full bg-surface-container-highest flex items-center justify-center"
+					>
+						<span
+							class="material-symbols-outlined text-5xl text-on-surface-variant"
+							>image_not_supported</span
+						>
+					</div>
+					{% endif %}
+					<div
+						class="absolute top-6 left-6 bg-primary text-on-primary px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest dark:bg-gradient-to-br dark:from-[#d72222] dark:to-[#811ece] dark:text-white"
+					>
+						Featured Arrival
+					</div>
+				</div>
+				<div class="p-8 flex justify-between items-end">
+					<div class="space-y-2">
+						<h3
+							class="text-3xl font-black font-headline tracking-tight dark:text-[#dae2fd]"
+						>
+							{{ car.title }}
+						</h3>
+						<div
+							class="flex gap-6 text-on-surface-variant font-medium dark:text-[#c2c6d6]"
+						>
+							<span class="flex items-center gap-1">
+								<span class="material-symbols-outlined text-sm">speed</span>
+								{{ car.speed }} mph
+							</span>
+							<span class="flex items-center gap-1">
+								<span class="material-symbols-outlined text-sm"
+									>settings_input_component</span
+								>
+								{{ car.transmission.name }}
+							</span>
+							<span class="flex items-center gap-1">
+								<span class="material-symbols-outlined text-sm"
+									>local_gas_station</span
+								>
+								{{ car.body_style.name }}
+							</span>
+						</div>
+					</div>
+					<div class="text-right">
+						<span
+							class="text-primary font-black text-3xl font-headline dark:text-red-500"
+							>${{ car.price }}</span
+						>
+					</div>
+				</div>
+			</div>
+			{% elif forloop.counter <= 3 %}
+			<!-- Small Featured Cards -->
+			<div
+				class="md:col-span-4 bg-surface-container-lowest rounded-[2rem] overflow-hidden group shadow-sm hover:shadow-2xl transition-all duration-500 dark:bg-[#171f33]"
+			>
+				<div class="relative h-[250px] overflow-hidden">
+					{% if car.image_1 %}
+					<img
+						class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+						src="{{ car.image_1.url }}"
+						alt="{{ car.title }}"
+					/>
+					{% else %}
+					<div
+						class="w-full h-full bg-surface-container-highest flex items-center justify-center"
+					>
+						<span
+							class="material-symbols-outlined text-5xl text-on-surface-variant"
+							>image_not_supported</span
+						>
+					</div>
+					{% endif %}
+				</div>
+				<div class="p-6 space-y-4">
+					<h3 class="text-xl font-bold font-headline dark:text-[#dae2fd]">
+						{{ car.title }}
+					</h3>
+					<div class="flex justify-between items-center">
+						<span class="text-on-surface-variant text-sm dark:text-[#c2c6d6]"
+							>{{ car.speed }} mph</span
+						>
+						<span class="text-primary font-black text-xl dark:text-red-500"
+							>${{ car.price }}</span
+						>
+					</div>
+				</div>
+			</div>
+			{% endif %} {% empty %}
+			<div class="col-span-full text-center py-12">
+				<p class="text-on-surface-variant">No cars available yet.</p>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</section>
+
+<!-- Trust Section -->
+<section class="py-32 bg-surface-container-highest dark:bg-[#222a3d]">
+	<div class="max-w-7xl mx-auto px-8">
+		<div class="text-center max-w-3xl mx-auto mb-20 space-y-4">
+			<h2
+				class="text-4xl md:text-5xl font-black font-headline tracking-tighter dark:text-[#dae2fd]"
+			>
+				Engineered for Trust
+			</h2>
+			<p class="text-on-surface-variant dark:text-[#c2c6d6]">
+				We redefine the car buying experience through transparency and editorial
+				standards.
+			</p>
+		</div>
+		<div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+			<div class="space-y-6 text-center md:text-left">
+				<div
+					class="w-16 h-16 bg-primary-container rounded-2xl flex items-center justify-center text-on-primary mx-auto md:mx-0 dark:bg-gradient-to-br dark:from-[#d72222] dark:to-[#811ece] dark:text-white"
+				>
+					<span
+						class="material-symbols-outlined text-3xl"
+						style="font-variation-settings: 'FILL' 1"
+						>verified_user</span
+					>
+				</div>
+				<h3 class="text-2xl font-bold font-headline dark:text-[#dae2fd]">
+					Certified Inspection
+				</h3>
+				<p
+					class="text-on-secondary-container leading-relaxed dark:text-[#c2c6d6]"
+				>
+					Every vehicle undergoes a 250-point technical certification by master
+					technicians.
+				</p>
+			</div>
+			<div class="space-y-6 text-center md:text-left">
+				<div
+					class="w-16 h-16 bg-primary-container rounded-2xl flex items-center justify-center text-on-primary mx-auto md:mx-0 dark:bg-gradient-to-br dark:from-[#d72222] dark:to-[#811ece] dark:text-white"
+				>
+					<span
+						class="material-symbols-outlined text-3xl"
+						style="font-variation-settings: 'FILL' 1"
+						>payments</span
+					>
+				</div>
+				<h3 class="text-2xl font-bold font-headline dark:text-[#dae2fd]">
+					Direct Financing
+				</h3>
+				<p
+					class="text-on-secondary-container leading-relaxed dark:text-[#c2c6d6]"
+				>
+					Tailored finance solutions with competitive rates from top
+					institutional lenders.
+				</p>
+			</div>
+			<div class="space-y-6 text-center md:text-left">
+				<div
+					class="w-16 h-16 bg-primary-container rounded-2xl flex items-center justify-center text-on-primary mx-auto md:mx-0 dark:bg-gradient-to-br dark:from-[#d72222] dark:to-[#811ece] dark:text-white"
+				>
+					<span
+						class="material-symbols-outlined text-3xl"
+						style="font-variation-settings: 'FILL' 1"
+						>local_shipping</span
+					>
+				</div>
+				<h3 class="text-2xl font-bold font-headline dark:text-[#dae2fd]">
+					Concierge Delivery
+				</h3>
+				<p
+					class="text-on-secondary-container leading-relaxed dark:text-[#c2c6d6]"
+				>
+					White-glove delivery service directly to your doorstep, nationwide.
+				</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+{% endblock %}

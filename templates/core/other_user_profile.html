@@ -1,0 +1,235 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+<main class="pt-20 pb-24 md:pb-0">
+	<!-- Hero Profile Header -->
+	<header class="relative w-full overflow-hidden pt-16 pb-12 px-8 lg:px-24">
+		<div class="absolute inset-0 z-0 opacity-20 pointer-events-none">
+			<div class="absolute -top-24 -right-24 w-96 h-96 bg-red-600 rounded-full blur-[120px]"></div>
+			<div class="absolute top-1/2 -left-24 w-64 h-64 bg-primary-container rounded-full blur-[100px]"></div>
+		</div>
+		<div class="relative z-10 flex flex-col md:flex-row items-center md:items-end gap-10">
+			<div class="relative group">
+				<div class="absolute -inset-1 bg-gradient-to-tr from-red-600 to-primary-container rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+				{% if other_profile and other_profile.avatar %}
+				<img class="relative w-40 h-40 md:w-48 md:h-48 rounded-full object-cover border-4 border-surface shadow-2xl" src="{{ other_profile.avatar.url }}" alt="{{ user.username }}">
+				{% else %}
+				<div class="relative w-40 h-40 md:w-48 md:h-48 rounded-full bg-surface-container-highest border-4 border-surface shadow-2xl flex items-center justify-center">
+					<span class="material-symbols-outlined text-7xl text-on-surface-variant">person</span>
+				</div>
+				{% endif %}
+			</div>
+			<div class="flex-1 text-center md:text-left">
+				<div class="flex flex-wrap justify-center md:justify-start items-center gap-3 mb-4">
+					<span class="bg-red-600/10 text-red-600 px-4 py-1 rounded-full text-xs font-bold tracking-widest flex items-center gap-2 uppercase dark:bg-red-600/20 dark:text-red-500">
+						<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">stars</span>
+						{% if user_rating >= 4.5 %}Top Rated Seller{% else %}Verified Seller{% endif %}
+					</span>
+					<span class="bg-surface-container-high text-on-surface-variant px-4 py-1 rounded-full text-xs font-bold tracking-widest uppercase dark:bg-[#1f2937] dark:text-[#8c909f]">
+						Member since {{ user.date_joined|date:"Y" }}
+					</span>
+				</div>
+				<h1 class="text-5xl md:text-7xl font-headline font-extrabold tracking-tighter text-on-surface mb-2 dark:text-[#dae2fd]">
+					{{ user.first_name|default:user.username }} {{ user.last_name|default:'' }}
+				</h1>
+				<p class="text-xl text-on-surface-variant flex items-center justify-center md:justify-start gap-2 font-light dark:text-[#c2c6d6]">
+					<span class="material-symbols-outlined text-red-600 dark:text-red-500">email</span>
+					{{ user.email }}
+				</p>
+			</div>
+			<div class="flex gap-4">
+				<button class="bg-gradient-to-tr from-red-600 to-red-800 text-white px-8 py-4 rounded-xl font-bold tracking-tight shadow-xl hover:scale-105 transition-transform duration-300 dark:from-[#d72222] dark:to-[#811ece]">
+					Follow Seller
+				</button>
+				<button class="bg-surface-container-highest text-on-surface px-6 py-4 rounded-xl font-bold border border-outline-variant/20 hover:bg-surface-bright transition-colors dark:bg-[#1f2937] dark:text-[#dae2fd]">
+					<span class="material-symbols-outlined">mail</span>
+				</button>
+			</div>
+		</div>
+	</header>
+	
+	<!-- Stats Section -->
+	<section class="px-8 lg:px-24 mb-20">
+		<div class="grid grid-cols-1 md:grid-cols-3 gap-1">
+			<div class="bg-surface-container-low p-10 rounded-l-3xl border-r border-outline-variant/10 text-center dark:bg-[#111827] dark:border-[#1f2937]">
+				<p class="text-red-600 font-bold text-sm tracking-widest uppercase mb-2 dark:text-red-500">Cars Sold</p>
+				<h3 class="text-5xl font-black font-headline text-on-surface dark:text-[#dae2fd]">{{ cars_sold|default:"0" }}</h3>
+			</div>
+			<div class="bg-surface-container-low p-10 border-r border-outline-variant/10 text-center dark:bg-[#111827] dark:border-[#1f2937]">
+				<p class="text-red-600 font-bold text-sm tracking-widest uppercase mb-2 dark:text-red-500">Avg. Rating</p>
+				<div class="flex items-center justify-center gap-2">
+					<h3 class="text-5xl font-black font-headline text-on-surface dark:text-[#dae2fd]">{{ user_rating|default:"0.0" }}</h3>
+					<span class="material-symbols-outlined text-red-600 text-4xl dark:text-red-500" style="font-variation-settings: 'FILL' 1;">star</span>
+				</div>
+			</div>
+			<div class="bg-surface-container-low p-10 rounded-r-3xl text-center dark:bg-[#111827]">
+				<p class="text-red-600 font-bold text-sm tracking-widest uppercase mb-2 dark:text-red-500">Active Listings</p>
+				<h3 class="text-5xl font-black font-headline text-on-surface dark:text-[#dae2fd]">{{ active_listings_count|default:"0" }}</h3>
+			</div>
+		</div>
+	</section>
+	
+	<!-- Inventory Grid -->
+	<section class="px-8 lg:px-24 mb-32">
+		<div class="flex justify-between items-end mb-12">
+			<div>
+				<h2 class="text-red-600 text-sm font-bold tracking-[0.3em] uppercase mb-4 dark:text-red-500">The Collection</h2>
+				<h3 class="text-4xl md:text-5xl font-black font-headline tracking-tighter dark:text-[#dae2fd]">Current Inventory</h3>
+			</div>
+			<a href="{% url 'catalog' %}?user={{ user.id }}" class="text-on-surface-variant hover:text-red-600 transition-colors flex items-center gap-2 font-bold tracking-tight dark:text-[#c2c6d6] dark:hover:text-red-500">
+				View All <span class="material-symbols-outlined">arrow_forward</span>
+			</a>
+		</div>
+		
+		<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+			{% if active_listings %}
+				{% for car in active_listings|slice:":3" %}
+				<div class="group cursor-pointer">
+					<a href="{% url 'car_detail' car.id %}">
+						<div class="relative overflow-hidden rounded-3xl mb-6 aspect-[4/3]">
+							{% if car.image_1 %}
+							<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="{{ car.image_1.url }}" alt="{{ car.title }}">
+							{% else %}
+							<div class="w-full h-full bg-surface-container-highest flex items-center justify-center">
+								<span class="material-symbols-outlined text-5xl text-on-surface-variant">image_not_supported</span>
+							</div>
+							{% endif %}
+							<div class="absolute top-4 right-4 bg-surface/80 backdrop-blur-md px-4 py-2 rounded-full text-xs font-bold text-on-surface dark:bg-black/70 dark:text-white">
+								{{ car.created_at|timesince }} ago
+							</div>
+						</div>
+						<div class="px-2">
+							<p class="text-red-600 text-xs font-bold tracking-widest uppercase mb-2 dark:text-red-500">{{ car.brand.name|default:"Brand" }}</p>
+							<h4 class="text-2xl font-headline font-bold mb-4 dark:text-[#dae2fd]">{{ car.title }}</h4>
+							<div class="flex justify-between items-center">
+								<span class="text-on-surface-variant text-sm font-medium dark:text-[#c2c6d6]">{{ car.speed }} mph • {{ car.transmission.name|default:"Auto" }}</span>
+								<span class="text-2xl font-black font-headline text-on-surface dark:text-[#dae2fd]">${{ car.price }}</span>
+							</div>
+						</div>
+					</a>
+				</div>
+				{% endfor %}
+			{% else %}
+			<div class="col-span-3 text-center py-12">
+				<p class="text-on-surface-variant dark:text-[#c2c6d6]">No active listings from this seller.</p>
+			</div>
+			{% endif %}
+		</div>
+	</section>
+	
+	<!-- Reviews & Feedback -->
+	<section class="bg-surface-container-low py-32 px-8 lg:px-24 dark:bg-[#111827]">
+		<div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24">
+			<!-- Review List -->
+			<div>
+				<h2 class="text-red-600 text-sm font-bold tracking-[0.3em] uppercase mb-4 dark:text-red-500">Client Feedback</h2>
+				<h3 class="text-4xl md:text-5xl font-black font-headline tracking-tighter mb-16 dark:text-[#dae2fd]">Seller Reviews</h3>
+				<div class="space-y-12">
+					{% if reviews %}
+						{% for review in reviews %}
+						<div class="relative pl-8 border-l-2 border-red-600/20 dark:border-red-500/20">
+							<div class="flex justify-between items-start">
+								<div class="flex items-center gap-1 mb-4 text-red-600 dark:text-red-500">
+									{% for i in "12345" %}
+										{% if forloop.counter <= review.rating %}
+										<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+										{% else %}
+										<span class="material-symbols-outlined">star</span>
+										{% endif %}
+									{% endfor %}
+								</div>
+								{% if session_user_id == review.from_user.id %}
+								<a href="{% url 'delete_review' review.id %}" onclick="return confirm('Are you sure you want to delete this review?')" class="text-red-500 hover:text-red-700 transition-colors">
+									<span class="material-symbols-outlined text-sm">delete</span>
+								</a>
+								{% endif %}
+							</div>
+							<p class="text-xl text-on-surface leading-relaxed mb-6 italic dark:text-[#dae2fd]">
+								"{{ review.text }}"
+							</p>
+							<div class="flex items-center gap-4">
+								<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-sm font-bold dark:bg-[#1f2937] dark:text-[#dae2fd]">
+									{{ review.from_user.first_name|slice:":1"|default:review.from_user.username|slice:":1" }}{{ review.from_user.last_name|slice:":1"|default:"" }}
+								</div>
+								<div>
+									<p class="font-bold text-on-surface dark:text-[#dae2fd]">{{ review.from_user.first_name|default:review.from_user.username }} {{ review.from_user.last_name|default:'' }}</p>
+									<p class="text-xs text-on-surface-variant uppercase tracking-widest dark:text-[#8c909f]">{{ review.created_at|date:"F Y" }}</p>
+								</div>
+							</div>
+						</div>
+						{% endfor %}
+					{% else %}
+					<div class="text-center py-12">
+						<p class="text-on-surface-variant dark:text-[#c2c6d6]">No reviews yet.</p>
+					</div>
+					{% endif %}
+				</div>
+			</div>
+			
+			<!-- Review Form -->
+			<div class="bg-surface-container-lowest p-12 rounded-[2rem] border border-outline-variant/10 shadow-2xl dark:bg-[#171f33] dark:border-[#1f2937]">
+				<h4 class="text-2xl font-headline font-black tracking-tight mb-8 dark:text-[#dae2fd]">Leave a Review</h4>
+				{% if session_user_id and session_user_id != user.id %}
+				<form method="post" action="{% url 'add_review' user.id %}">
+					{% csrf_token %}
+					<div class="mb-8">
+						<label class="text-red-600 text-xs font-bold tracking-widest uppercase mb-4 block dark:text-red-500">Rate your experience</label>
+						<div class="flex gap-2" id="rating-stars">
+							{% for i in "12345" %}
+							<button type="button" data-rating="{{ forloop.counter }}" class="star-btn material-symbols-outlined text-3xl text-on-surface-variant/30 hover:text-red-600 transition-colors dark:hover:text-red-500">star</button>
+							{% endfor %}
+						</div>
+						<input type="hidden" name="rating" id="rating-value" required>
+					</div>
+					
+					<div class="mb-8">
+						<label class="text-on-surface-variant text-xs font-bold tracking-widest uppercase mb-4 block dark:text-[#8c909f]">Your Comment</label>
+						<textarea name="text" rows="4" class="w-full bg-surface-container-low border-b-2 border-outline-variant/20 border-x-0 border-t-0 focus:ring-0 focus:border-red-600 text-on-surface py-4 px-0 transition-colors resize-none dark:bg-[#111827] dark:text-[#dae2fd] dark:focus:border-red-500" placeholder="Share your experience..." required></textarea>
+					</div>
+					
+					<button type="submit" class="w-full bg-gradient-to-tr from-red-600 to-red-800 text-white py-5 rounded-xl font-black tracking-widest uppercase text-sm hover:shadow-2xl hover:shadow-red-600/20 transition-all duration-300 dark:from-[#d72222] dark:to-[#811ece]">
+						Submit Review
+					</button>
+				</form>
+				{% elif not session_user_id %}
+				<p class="text-center text-on-surface-variant dark:text-[#c2c6d6]">
+					Please <a href="{% url 'login' %}" class="text-red-600 hover:underline">login</a> to leave a review.
+				</p>
+				{% elif session_user_id == user.id %}
+				<p class="text-center text-on-surface-variant dark:text-[#c2c6d6]">
+					You cannot review yourself.
+				</p>
+				{% endif %}
+			</div>
+		</div>
+	</section>
+</main>
+
+<script>
+	// Star rating functionality
+	const stars = document.querySelectorAll('.star-btn');
+	const ratingInput = document.getElementById('rating-value');
+	
+	if (stars.length > 0) {
+		stars.forEach(star => {
+			star.addEventListener('click', function() {
+				const rating = this.dataset.rating;
+				ratingInput.value = rating;
+				
+				stars.forEach((s, index) => {
+					if (index < rating) {
+						s.classList.add('text-red-600');
+						s.classList.remove('text-on-surface-variant/30');
+						s.style.fontVariationSettings = "'FILL' 1";
+					} else {
+						s.classList.remove('text-red-600');
+						s.classList.add('text-on-surface-variant/30');
+						s.style.fontVariationSettings = "'FILL' 0";
+					}
+				});
+			});
+		});
+	}
+</script>
+{% endblock %}

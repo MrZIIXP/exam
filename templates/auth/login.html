@@ -1,0 +1,432 @@
+{% load static %}
+<!doctype html>
+<html class="light" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+		<title>LUXE AUTO | Log In</title>
+		<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+			rel="stylesheet"
+		/>
+		<script id="tailwind-config">
+			tailwind.config = {
+				darkMode: 'class',
+				theme: {
+					extend: {
+						colors: {
+							'on-background': '#191c1d',
+							'on-surface-variant': '#414754',
+							'tertiary-container': '#c64f00',
+							'surface-container-low': '#f3f4f5',
+							'tertiary-fixed': '#ffdbcc',
+							'outline-variant': '#c1c6d7',
+							'on-primary': '#ffffff',
+							outline: '#717786',
+							'primary-fixed': '#d8e2ff',
+							'on-tertiary-fixed': '#351000',
+							'surface-container-high': '#e7e8e9',
+							'surface-bright': '#f8f9fa',
+							'on-tertiary': '#ffffff',
+							'surface-container-lowest': '#ffffff',
+							'surface-container': '#edeeef',
+							'surface-container-highest': '#e1e3e4',
+							'on-tertiary-fixed-variant': '#7c2e00',
+							background: '#f8f9fa',
+							'secondary-fixed-dim': '#b7c8de',
+							'on-secondary-container': '#556679',
+							'surface-tint': '#005bc0',
+							'surface-variant': '#e1e3e4',
+							'inverse-surface': '#2e3132',
+							'secondary-container': '#d2e4fb',
+							'inverse-primary': '#adc7ff',
+							'on-error-container': '#93000a',
+							'secondary-fixed': '#d2e4fb',
+							'on-secondary': '#ffffff',
+							'on-surface': '#191c1d',
+							secondary: '#4f6073',
+							'inverse-on-surface': '#f0f1f2',
+							'on-primary-fixed-variant': '#004493',
+							'primary-fixed-dim': '#adc7ff',
+							'error-container': '#ffdad6',
+							'surface-dim': '#d9dadb',
+							'tertiary-fixed-dim': '#ffb695',
+							'on-secondary-fixed-variant': '#38485a',
+							'primary-container': '#0070ea',
+							tertiary: '#9e3d00',
+							error: '#ba1a1a',
+							'on-error': '#ffffff',
+							'on-primary-fixed': '#001a41',
+							primary: '#0059bb',
+							'on-primary-container': '#fefcff',
+							'on-tertiary-container': '#fffbff',
+							surface: '#f8f9fa',
+							'on-secondary-fixed': '#0b1d2d',
+						},
+						fontFamily: {
+							headline: ['Manrope'],
+							body: ['Manrope'],
+							label: ['Manrope'],
+						},
+						borderRadius: {
+							DEFAULT: '0.25rem',
+							lg: '0.5rem',
+							xl: '0.75rem',
+							full: '9999px',
+						},
+					},
+				},
+			}
+		</script>
+		<style>
+			.material-symbols-outlined {
+				font-variation-settings:
+					'FILL' 0,
+					'wght' 300,
+					'GRAD' 0,
+					'opsz' 24;
+			}
+			body {
+				background-color: #f8f9fa;
+				color: #191c1d;
+				transition:
+					background-color 0.3s ease,
+					color 0.3s ease;
+			}
+			.dark body {
+				background-color: #0b1326;
+				color: #dae2fd;
+			}
+			.hero-gradient {
+				background: linear-gradient(135deg, #0059bb 0%, #0070ea 100%);
+			}
+			.dark .hero-gradient {
+				background: linear-gradient(135deg, #d72222 0%, #811ece 100%);
+			}
+			.custom-input:focus {
+				outline: none;
+				border-bottom-color: #0059bb;
+			}
+			.dark .custom-input:focus {
+				border-bottom-color: #d72222;
+			}
+			.dark .bg-surface {
+				background-color: #0b1326;
+			}
+			.dark .bg-surface-container-lowest {
+				background-color: #060e20;
+			}
+			.dark .text-white {
+				color: #dae2fd;
+			}
+			.dark .border-outline-variant\/20 {
+				border-color: #424754;
+			}
+			.dark .text-on-surface-variant {
+				color: #c2c6d6;
+			}
+			/* Анимация для ошибок */
+			@keyframes slideDown {
+				from {
+					opacity: 0;
+					transform: translateY(-10px);
+				}
+				to {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+			.error-message {
+				animation: slideDown 0.3s ease-out;
+			}
+			/* Стили для полей с ошибками */
+			.input-error {
+				border-bottom-color: #ba1a1a !important;
+			}
+			.dark .input-error {
+				border-bottom-color: #ba1a1a !important;
+			}
+			/* Успешное сообщение */
+			.success-message {
+				animation: slideDown 0.3s ease-out;
+				background-color: #e6f4ea;
+				border-color: #34a853;
+			}
+			.dark .success-message {
+				background-color: rgba(52, 168, 83, 0.1);
+				border-color: #34a853;
+			}
+		</style>
+	</head>
+	<body
+		class="font-body selection:bg-primary-container selection:text-on-primary-container dark:selection:bg-red-500/30"
+	>
+		<main class="min-h-screen flex flex-col md:flex-row">
+			<!-- Visual Sidebar -->
+			<section
+				class="hidden md:flex md:w-5/12 lg:w-1/2 relative overflow-hidden bg-surface-container-lowest dark:bg-[#060e20]"
+			>
+				<div class="absolute inset-0 z-0 opacity-40 dark:opacity-50">
+					<video
+						class="w-full h-full object-cover"
+						autoplay
+						muted
+						loop
+						src="{% static 'videos/video_1.mp4' %}"
+					/>
+				</div>
+				<div
+					class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent z-10 dark:from-[#0b1326]"
+				></div>
+				<div class="relative z-20 p-16 flex flex-col justify-between h-full">
+					<div>
+						<h1
+							class="text-3xl font-black tracking-tighter text-white uppercase mb-4 dark:text-[#dae2fd]"
+						>
+							LUXE AUTO
+						</h1>
+						<p
+							class="text-white/20 text-7xl font-black tracking-tighter leading-none select-none dark:text-[#dae2fd]/20"
+						>
+							SHADOW<br />GALLERY
+						</p>
+					</div>
+					<div class="max-w-md">
+						<span
+							class="inline-block px-3 py-1 bg-primary text-white text-[10px] font-bold tracking-[0.2em] uppercase mb-6 dark:bg-gradient-to-br dark:from-[#d72222] dark:to-[#811ece] dark:text-white"
+						>
+							Exclusive Access
+						</span>
+						<h2
+							class="text-5xl font-extrabold text-white leading-tight mb-6 tracking-tight dark:text-[#dae2fd]"
+						>
+							Welcome Back to the Elite.
+						</h2>
+						<p
+							class="text-white/70 text-lg leading-relaxed font-light dark:text-[#c2c6d6]"
+						>
+							Access your Shadow Gallery account to manage your luxury automotive
+							collection and exclusive marketplace privileges.
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- Login Form Canvas -->
+			<section
+				class="flex-1 flex flex-col bg-surface min-h-screen p-6 md:p-20 dark:bg-[#0b1326]"
+			>
+				<!-- Header for Mobile -->
+				<header class="mb-8 md:hidden">
+					<h1
+						class="text-xl font-black tracking-tighter text-on-surface uppercase dark:text-[#dae2fd]"
+					>
+						LUXE AUTO
+					</h1>
+				</header>
+				<div class="flex-1 flex items-center justify-center px-0 md:px-6 py-6 md:py-12">
+					<div class="w-full max-w-xl">
+						<div class="mb-8 md:mb-12">
+							<h2
+								class="text-3xl md:text-4xl font-extrabold text-on-surface tracking-tight mb-2 md:mb-3 dark:text-[#dae2fd]"
+							>
+								Welcome Back
+							</h2>
+							<p
+								class="text-on-surface-variant text-xs md:text-sm tracking-wide dark:text-[#c2c6d6]"
+							>
+								Log in to access your exclusive Shadow Gallery account.
+							</p>
+						</div>
+
+						<!-- Display Messages -->
+						{% if messages %} {% for message in messages %}
+						<div
+							class="mb-6 p-4 rounded-lg {% if message.tags %}bg-{{ message.tags }}-container text-on-{{ message.tags }}-container border-l-4 border-{{ message.tags }}{% else %}bg-error-container text-on-error-container border-l-4 border-error{% endif %} error-message"
+						>
+							<div class="flex items-center gap-2">
+								<span
+									class="material-symbols-outlined text-lg {% if message.tags %}text-{{ message.tags }}{% else %}text-error{% endif %}"
+									>{% if message.tags == 'success' %}check_circle{% elif message.tags == 'warning' %}warning{% else %}error_outline{% endif %}</span
+								>
+								<span class="text-xs md:text-sm font-medium">{{ message }}</span>
+							</div>
+						</div>
+						{% endfor %} {% endif %}
+
+						<!-- Display Form Errors -->
+						{% if form.non_field_errors %}
+						<div
+							class="mb-6 p-4 rounded-lg bg-error-container text-on-error-container border-l-4 border-error error-message"
+						>
+							<div class="flex items-center gap-2">
+								<span class="material-symbols-outlined text-error text-lg"
+									>error_outline</span
+								>
+								<span class="text-xs md:text-sm font-medium"
+									>{{ form.non_field_errors.0 }}</span
+								>
+							</div>
+						</div>
+						{% endif %}
+
+						<form method="post" class="space-y-8 md:space-y-10" novalidate>
+							{% csrf_token %}
+
+							<!-- Email Field -->
+							<div class="relative">
+								<label
+									class="block text-[10px] uppercase tracking-[0.2em] font-bold text-primary mb-2 dark:text-[#d72222]"
+									for="{{ form.email.id_for_label }}"
+								>
+									Email Address
+								</label>
+								{{ form.email }}
+								{% if form.email.errors %}
+								<div class="text-error text-xs mt-2 flex items-center gap-1 animate-pulse">
+									<span class="material-symbols-outlined text-xs">error</span>
+									<span>{{ form.email.errors.0 }}</span>
+								</div>
+								{% endif %}
+							</div>
+
+							<!-- Password Field -->
+							<div class="relative">
+								<label
+									class="block text-[10px] uppercase tracking-[0.2em] font-bold text-primary mb-2 dark:text-[#d72222]"
+									for="{{ form.password.id_for_label }}"
+								>
+									Password
+								</label>
+								<div
+									class="flex items-center border-b-2 {% if form.password.errors %}input-error border-error{% else %}border-outline-variant/20{% endif %} focus-within:border-primary transition-colors duration-300 dark:focus-within:border-[#d72222]"
+								>
+									{{ form.password }}
+									<button
+										class="text-outline hover:text-on-surface transition-colors dark:text-[#8c909f] dark:hover:text-[#dae2fd] toggle-password"
+										type="button"
+										data-target="id_password"
+									>
+										<span class="material-symbols-outlined text-lg"
+											>visibility</span
+										>
+									</button>
+								</div>
+								{% if form.password.errors %}
+								<div class="text-error text-xs mt-2 flex items-center gap-1 animate-pulse">
+									<span class="material-symbols-outlined text-xs">error</span>
+									<span>{{ form.password.errors.0 }}</span>
+								</div>
+								{% endif %}
+							</div>
+
+							<!-- Forgot Password Link -->
+							<div class="flex justify-end">
+								<a
+									class="text-xs text-primary hover:text-primary/80 transition-colors dark:text-[#d72222] dark:hover:text-[#d72222]/80 font-medium"
+									href="{% url 'forgot_password' %}"
+									>Forgot Password?</a
+								>
+							</div>
+
+							<!-- CTA Section -->
+							<div
+								class="pt-4 md:pt-6 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6"
+							>
+								<button
+									class="w-full md:w-auto px-8 md:px-12 py-4 md:py-5 hero-gradient rounded-lg text-white font-bold text-xs md:text-sm uppercase tracking-widest shadow-xl shadow-primary/20 active:scale-95 transition-all duration-200 dark:shadow-[#d72222]/20 hover:shadow-2xl"
+									type="submit"
+								>
+									Log In
+								</button>
+								<p class="text-xs text-on-surface-variant dark:text-[#c2c6d6]">
+									Not a member yet?
+									<a
+										class="text-on-surface font-bold hover:text-primary transition-colors dark:text-[#dae2fd] dark:hover:text-[#d72222]"
+										href="{% url 'register' %}"
+										>Register</a
+									>
+								</p>
+							</div>
+						</form>
+					</div>
+				</div>
+			</section>
+		</main>
+		<footer
+			class="mt-auto border-t border-outline-variant/20 p-6 md:p-8 flex flex-col md:flex-row justify-between items-center gap-4 dark:border-[#222a3d]"
+		>
+			<span
+				class="text-[9px] md:text-[10px] font-headline text-on-surface-variant uppercase tracking-widest dark:text-[#c2c6d6]"
+			>
+				© 2024 LUXE AUTO SHADOW GALLERY. ALL RIGHTS RESERVED.
+			</span>
+			<div class="flex space-x-6 md:space-x-8">
+				<a
+					class="text-[9px] md:text-[10px] font-headline text-on-surface-variant hover:text-primary uppercase tracking-widest transition-all dark:text-[#c2c6d6] dark:hover:text-[#d72222]"
+					href="#"
+					>Privacy Policy</a
+				>
+				<a
+					class="text-[9px] md:text-[10px] font-headline text-on-surface-variant hover:text-primary uppercase tracking-widest transition-all dark:text-[#c2c6d6] dark:hover:text-[#d72222]"
+					href="#"
+					>Terms of Service</a
+				>
+			</div>
+		</footer>
+
+		<script>
+			const html = document.documentElement
+			const savedTheme = localStorage.getItem('theme')
+			if (savedTheme === 'dark') {
+				html.classList.add('dark')
+			}
+
+			const observer = new MutationObserver(function (mutations) {
+				mutations.forEach(function (mutation) {
+					if (mutation.attributeName === 'class') {
+						if (html.classList.contains('dark')) {
+							localStorage.setItem('theme', 'dark')
+						} else {
+							localStorage.setItem('theme', 'light')
+						}
+					}
+				})
+			})
+			observer.observe(html, { attributes: true })
+
+			document.querySelectorAll('.toggle-password').forEach(button => {
+				button.addEventListener('click', function (e) {
+					e.preventDefault()
+					const targetId = this.getAttribute('data-target')
+					const input = document.getElementById(targetId)
+					const icon = this.querySelector('.material-symbols-outlined')
+
+					if (input.type === 'password') {
+						input.type = 'text'
+						icon.textContent = 'visibility_off'
+					} else {
+						input.type = 'password'
+						icon.textContent = 'visibility'
+					}
+				})
+			})
+
+			setTimeout(() => {
+				const errorMessages = document.querySelectorAll('.error-message')
+				errorMessages.forEach(msg => {
+					msg.style.opacity = '0'
+					msg.style.transition = 'opacity 0.5s ease-out'
+					setTimeout(() => {
+						if (msg.parentNode) msg.remove()
+					}, 500)
+				})
+			}, 5000)
+		</script>
+	</body>
+</html>
