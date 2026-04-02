@@ -283,7 +283,10 @@
 								>
 									Username
 								</label>
-								{{ form.username }} {% if form.username.errors %}
+								<div class="flex items-center border-b-2 border-slate-300 focus-within:border-primary transition-colors duration-300 dark:focus-within:border-[#d72222]">
+									{{ form.username }} 
+								</div>
+								{% if form.username.errors %}
 								<div
 									class="text-error text-xs mt-2 flex items-center gap-1 animate-pulse"
 								>
@@ -301,7 +304,10 @@
 								>
 									Email Address
 								</label>
-								{{ form.email }} {% if form.email.errors %}
+								<div class="flex items-center border-b-2 border-slate-300 focus-within:border-primary transition-colors duration-300 dark:focus-within:border-[#d72222]">
+									{{ form.email }} 
+								</div>
+								{% if form.email.errors %}
 								<div
 									class="text-error text-xs mt-2 flex items-center gap-1 animate-pulse"
 								>
@@ -320,18 +326,9 @@
 									Create Password
 								</label>
 								<div
-									class="flex items-center border-b-2 {% if form.password1.errors %}input-error border-error{% else %}border-outline-variant/20{% endif %} focus-within:border-primary transition-colors duration-300 dark:focus-within:border-[#d72222]"
+									class="flex items-center border-b-2 border-slate-300 {% if form.password1.errors %}input-error border-error{% else %}border-outline-variant/20{% endif %} focus-within:border-primary transition-colors duration-300 dark:focus-within:border-[#d72222]"
 								>
 									{{ form.password1 }}
-									<button
-										class="text-outline hover:text-on-surface transition-colors dark:text-[#8c909f] dark:hover:text-[#dae2fd] toggle-password"
-										type="button"
-										data-target="id_password1"
-									>
-										<span class="material-symbols-outlined text-lg"
-											>visibility</span
-										>
-									</button>
 								</div>
 								{% if form.password1.errors %}
 								<div
@@ -356,18 +353,9 @@
 									Confirm Password
 								</label>
 								<div
-									class="flex items-center border-b-2 {% if form.password2.errors %}input-error border-error{% else %}border-outline-variant/20{% endif %} focus-within:border-primary transition-colors duration-300 dark:focus-within:border-[#d72222]"
+									class="flex items-center border-b-2 border-slate-300 {% if form.password2.errors %}input-error border-error{% else %}border-outline-variant/20{% endif %} focus-within:border-primary transition-colors duration-300 dark:focus-within:border-[#d72222]"
 								>
 									{{ form.password2 }}
-									<button
-										class="text-outline hover:text-on-surface transition-colors dark:text-[#8c909f] dark:hover:text-[#dae2fd] toggle-password"
-										type="button"
-										data-target="id_password2"
-									>
-										<span class="material-symbols-outlined text-lg"
-											>visibility</span
-										>
-									</button>
 								</div>
 								{% if form.password2.errors %}
 								<div

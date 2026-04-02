@@ -10,7 +10,8 @@ urlpatterns = [
     path('', include('accounts.urls')),
     path('catalog/', include('catalog.urls')),
     path('', include('deals.urls')),
-    # path('', include('review.urls'))
+    path('', include('ai.urls')),
+    path('profile/', include('favourites.urls')),
 ]
 
 if settings.DEBUG:

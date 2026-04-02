@@ -1,0 +1,53 @@
+{% extends 'profile/base.html' %}
+{% load static %}
+
+{% block content %}
+<main class="px-8 py-8">
+    <div class="mb-8">
+        <h1 class="text-3xl font-bold text-on-surface dark:text-[#dae2fd]">My Favourites</h1>
+        <p class="text-on-surface-variant dark:text-[#c2c6d6]">{{ total_favourites }} saved vehicles</p>
+    </div>
+
+    {% if favourites %}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for fav in favourites %}
+        <div class="bg-surface-container-lowest rounded-xl overflow-hidden group hover:shadow-2xl transition-all duration-500 dark:bg-[#171f33]">
+            <a href="{% url 'car_detail' fav.car.id %}">
+                <div class="relative h-48 overflow-hidden">
+                    {% if fav.car.image_1 %}
+                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="{{ fav.car.image_1.url }}" alt="{{ fav.car.title }}">
+                    {% else %}
+                    <div class="w-full h-full bg-surface-container-highest flex items-center justify-center">
+                        <span class="material-symbols-outlined text-5xl text-on-surface-variant">image_not_supported</span>
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="p-5">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="font-bold text-lg text-on-surface dark:text-[#dae2fd]">{{ fav.car.title }}</h3>
+                        <span class="text-primary font-bold dark:text-red-500">${{ fav.car.price }}</span>
+                    </div>
+                    <p class="text-on-surface-variant text-sm mb-3 dark:text-[#c2c6d6]">{{ fav.car.brand.name }} • {{ fav.car.speed }} mph</p>
+                    <div class="flex justify-between items-center pt-3 border-t border-outline-variant/20">
+                        <span class="text-xs text-on-surface-variant dark:text-[#8c909f]">Added {{ fav.created_at|timesince }} ago</span>
+                        <a href="{% url 'remove_favourite' fav.car.id %}" class="text-red-500 hover:text-red-700 transition-colors" onclick="return confirm('Remove from favourites?')">
+                            <span class="material-symbols-outlined">delete</span>
+                        </a>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="text-center py-20">
+        <span class="material-symbols-outlined text-6xl text-on-surface-variant/30 mb-4">favorite_border</span>
+        <h3 class="text-xl font-bold text-on-surface mb-2 dark:text-[#dae2fd]">No favourites yet</h3>
+        <p class="text-on-surface-variant dark:text-[#c2c6d6]">Start adding cars you like to your favourites list</p>
+        <a href="{% url 'catalog' %}" class="inline-block mt-6 px-6 py-3 bg-primary text-white rounded-xl hover:opacity-90 transition-all dark:bg-gradient-to-br dark:from-[#d72222] dark:to-[#811ece]">
+            Browse Catalog
+        </a>
+    </div>
+    {% endif %}
+</main>
+{% endblock %}

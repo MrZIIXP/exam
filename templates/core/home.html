@@ -44,7 +44,7 @@
 					>
 					<select
 						name="brand"
-						class="w-full bg-transparent border-none p-0 focus:ring-0 font-headline font-bold text-on-surface dark:text-[#dae2fd] dark:bg-transparent"
+						class="w-full bg-transparent border-none p-0 focus:ring-0 font-headline font-bold text-on-surface dark:text-[#dae2fd] dark:bg-slate-800"
 					>
 						<option value="">All Makes</option>
 						{% for brand in brands %}
@@ -61,7 +61,7 @@
 					>
 					<select
 						name="body_style"
-						class="w-full bg-transparent border-none p-0 focus:ring-0 font-headline font-bold text-on-surface dark:text-[#dae2fd] dark:bg-transparent"
+						class="w-full bg-transparent border-none p-0 focus:ring-0 font-headline font-bold text-on-surface dark:text-[#dae2fd] dark:bg-slate-800"
 					>
 						<option value="">All Styles</option>
 						{% for style in body_styles %}
@@ -78,7 +78,7 @@
 					>
 					<select
 						name="max_price"
-						class="w-full bg-transparent border-none p-0 focus:ring-0 font-headline font-bold text-on-surface dark:text-[#dae2fd] dark:bg-transparent"
+						class="w-full bg-transparent border-none p-0 focus:ring-0 font-headline font-bold text-on-surface dark:text-[#dae2fd] dark:bg-slate-800"
 					>
 						<option value="50000">$50,000</option>
 						<option value="100000">$100,000</option>
@@ -93,7 +93,7 @@
 					>
 					<select
 						name="sort"
-						class="w-full bg-transparent border-none p-0 focus:ring-0 font-headline font-bold text-on-surface dark:text-[#dae2fd] dark:bg-transparent"
+						class="w-full bg-transparent border-none p-0 focus:ring-0 font-headline font-bold text-on-surface dark:text-[#dae2fd] dark:bg-slate-800"
 					>
 						<option value="-created_at">Newest First</option>
 						<option value="price">Price: Low to High</option>
@@ -126,7 +126,7 @@
 				<h2
 					class="text-4xl md:text-5xl font-black font-headline tracking-tighter dark:text-[#dae2fd]"
 				>
-					Browse by Body Style
+					Browse by Brands
 				</h2>
 			</div>
 			<a
@@ -138,7 +138,7 @@
 			</a>
 		</div>
 		<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
-			{% for style in body_styles %}
+			{% for style in brands|slice:':6' %}
 			<a
 				href="{% url 'catalog' %}?body_style={{ style.id }}"
 				class="group cursor-pointer bg-surface-container-lowest p-8 rounded-2xl flex flex-col items-center gap-6 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 dark:bg-[#171f33] dark:hover:bg-[#222a3d]"

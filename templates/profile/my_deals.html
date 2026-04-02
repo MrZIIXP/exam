@@ -1,236 +1,138 @@
-{% extends './base.html' %} {% block content %}
-<main class="px-8 ">
-	<!-- Header Section -->
-	<header class="mb-20">
-		<h1
-			class="font-headline font-extrabold text-6xl md:text-6xl tracking-tighter text-on-surface mb-4"
-		>
-			Your Garage.
-		</h1>
-		<p
-			class="font-label text-on-surface-variant max-w-xl text-sm tracking-wide uppercase"
-		>
-			Managing your high-performance acquisitions with technical precision.
-		</p>
-	</header>
-	<div class="grid grid-cols-1 gap-20">
-		<!-- Order Card 01 -->
-		<section
-			class="group relative grid grid-cols-1 lg:grid-cols-12 gap-8 items-center"
-		>
-			<div
-				class="lg:col-span-8 relative overflow-hidden rounded-xl bg-surface-container shadow-sm transition-transform duration-500 group-hover:scale-[1.01]"
-			>
-				<img
-					class="w-full h-[600px] object-cover filter brightness-90 contrast-110"
-					data-alt="Sleek modern sports car with matte black finish parked in a high-end minimalist concrete showroom with dramatic lighting"
-					src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKax2CK9RWZL37ppPx6dKOSQ0QPgQFdo_Ad0KkfXTBdctPQU_D8aHrn6UeL5mT_CKOFHJVlxm0DybhGnoJknaXk3Tcsht1rXa15JPXjZzHxiPVX7W6S2qsNFv-I-Romxvub-_p9BZtw7PPT81dvN6s4e1SrGAB9MvAVdpEtwvDrQ_5_ywjgj625tXT9TOEKC9QZVEmO-7Dob-IWZWedTI2eb5DARMHmxxNnmqqzTRr9Xo_-oWZH1kLGX3gXMVchAQpclyd9S0XhgBd"
-				/>
-				<div
-					class="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-black/60 to-transparent"
-				></div>
-				<div class="absolute top-8 left-8">
-					<span
-						class="bg-primary text-white px-4 py-2 font-headline font-bold text-xs uppercase tracking-widest rounded-full shadow-lg"
-						>In Production</span
-					>
-				</div>
-			</div>
-			<div
-				class="lg:col-span-4 lg:-ml-12 z-10 p-8 md:p-12 bg-surface-container-lowest dark:shadow-red-600/40 hover:scale-105 rounded-xl shadow-2xl border border-outline-variant/10"
-			>
-				<h2 class="font-headline font-bold text-4xl mb-2 text-on-surface">
-					Vanquish S-7
-				</h2>
-				<p class="font-label text-sm text-on-surface-variant mb-8 font-medium">
-					ORDER ID: PV-992-GTS-04
-				</p>
-				<div class="space-y-6 mb-10">
-					<div
-						class="flex justify-between items-end border-b border-surface-container-high pb-4"
-					>
-						<span
-							class="font-label text-xs uppercase text-on-surface-variant tracking-wider"
-							>Exterior</span
-						>
-						<span class="font-headline font-semibold text-on-surface"
-							>Obsidian Matte</span
-						>
-					</div>
-					<div
-						class="flex justify-between items-end border-b border-surface-container-high pb-4"
-					>
-						<span
-							class="font-label text-xs uppercase text-on-surface-variant tracking-wider"
-							>Wheels</span
-						>
-						<span class="font-headline font-semibold text-on-surface"
-							>21" Turbine Alloy</span
-						>
-					</div>
-					<div
-						class="flex justify-between items-end border-b border-surface-container-high pb-4"
-					>
-						<span
-							class="font-label text-xs uppercase text-on-surface-variant tracking-wider"
-							>Delivery</span
-						>
-						<span class="font-headline font-semibold text-primary"
-							>OCT 24, 2024</span
-						>
-					</div>
-				</div>
-				<div class="flex flex-col space-y-4">
-					<button
-						class="w-full py-4 bg-gradient-to-br from-primary to-primary-container text-white font-headline font-bold rounded-xl shadow-md hover:shadow-xl transition-all"
-					>
-						Track Build Status
-					</button>
-					<button
-						class="w-full py-4 bg-secondary-container text-on-secondary-container font-headline font-bold rounded-xl hover:bg-secondary-fixed transition-all"
-					>
-						Review Configuration
-					</button>
-				</div>
-			</div>
-		</section>
-		<!-- Order Card 02 -->
-		<section
-			class="group relative grid grid-cols-1 lg:grid-cols-12 gap-8 items-center"
-		>
-			<!-- Mobile Only Image Re-ordering via flex if needed, but grid order works well here -->
-			<div
-				class="lg:col-span-4 lg:order-1 z-10 p-8 md:p-12 bg-surface-container-lowest rounded-xl dark:shadow-red-600/40 hover:scale-105 shadow-2xl border border-outline-variant/10 lg:-mr-12"
-			>
-				<h2 class="font-headline font-bold text-4xl mb-2 text-on-surface">
-					Apex GT-Electric
-				</h2>
-				<p class="font-label text-sm text-on-surface-variant mb-8 font-medium">
-					ORDER ID: PV-TYCN-4S-82
-				</p>
-				<div class="space-y-6 mb-10">
-					<div
-						class="flex justify-between items-end border-b border-surface-container-high pb-4"
-					>
-						<span
-							class="font-label text-xs uppercase text-on-surface-variant tracking-wider"
-							>Exterior</span
-						>
-						<span class="font-headline font-semibold text-on-surface"
-							>Crystalline Silver</span
-						>
-					</div>
-					<div
-						class="flex justify-between items-end border-b border-surface-container-high pb-4"
-					>
-						<span
-							class="font-label text-xs uppercase text-on-surface-variant tracking-wider"
-							>Wheels</span
-						>
-						<span class="font-headline font-semibold text-on-surface"
-							>20" Aero Blade</span
-						>
-					</div>
-					<div
-						class="flex justify-between items-end border-b border-surface-container-high pb-4"
-					>
-						<span
-							class="font-label text-xs uppercase text-on-surface-variant tracking-wider"
-							>Delivery</span
-						>
-						<span class="font-headline font-semibold text-tertiary"
-							>NOV 12, 2024</span
-						>
-					</div>
-				</div>
-				<div class="flex flex-col space-y-4">
-					<button
-						class="w-full py-4 bg-gradient-to-br from-primary to-primary-container text-white font-headline font-bold rounded-xl shadow-md hover:shadow-xl transition-all"
-					>
-						Finalize Payment
-					</button>
-					<button
-						class="w-full py-4 bg-secondary-container text-on-secondary-container font-headline font-bold rounded-xl hover:bg-secondary-fixed transition-all"
-					>
-						Contact Concierge
-					</button>
-				</div>
-			</div>
-			<div
-				class="lg:col-span-8 lg:order-2 relative overflow-hidden rounded-xl bg-surface-container shadow-sm transition-transform duration-500 group-hover:scale-[1.01]"
-			>
-				<img
-					class="w-full h-[600px] object-cover filter brightness-95"
-					data-alt="Luxury electric sports car in silver metallic paint moving fast on a mountain road with motion blur at twilight"
-					src="https://lh3.googleusercontent.com/aida-public/AB6AXuB64gtyZvxR2Xg64We9jVSmAGnPOEncyhwuAvRGOiDyP21TUT6jQCkZL2LvNt4RtV-DTCGRWZzB_-UuqHADlXVssH5cRWGCaAYyd44ET5bXeS61vj0oyXGl9Y4mcwyshMdfpADpc9zwRXVvT9aVlITWU2t1Wpku8viEOYNXXA-K0bH5chvy1rBgXgdEvSrC1WF12QMjawn8zii45Zdhc3suvG4dEPP3dWh02l1Q7MvXkqVHH9h_NMN3DM9N4Tkv5A-1uvZDOGQu5HrS"
-				/>
-				<div
-					class="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-black/40 to-transparent"
-				></div>
-				<div class="absolute top-8 right-8">
-					<span
-						class="bg-tertiary text-white px-4 py-2 font-headline font-bold text-xs uppercase tracking-widest rounded-full shadow-lg"
-						>Payment Pending</span
-					>
-				</div>
-			</div>
-		</section>
-	</div>
-	<!-- Order History Shortcut (Editorial Grid) -->
-	<div class="mt-32">
-		<h3 class="font-headline font-bold text-2xl mb-12 flex items-center gap-4">
-			Delivered Excellence
-			<div class="h-[1px] flex-grow bg-surface-container-highest"></div>
-		</h3>
-		<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-			<div
-				class="bg-surface-container-lowest p-6 rounded-xl hover:shadow-lg transition-all border border-transparent hover:border-outline-variant/20"
-			>
-				<img
-					class="w-full aspect-video object-cover rounded-lg mb-4"
-					data-alt="Red italian supercar parked in a modern minimalist villa driveway under bright sun"
-					src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjWpQEpv9xLo117ImEX2OrgEC890wDKNBKDZ5LJd1LPazr7UmoqqROaDQGObUSs_w33ahqkVXitP_lBXP3Bj4GNLoYbwbi1hyUMAOOAcmsPwTJqoLUqkTjtUG6EPg2cznNZOduWM8DrlRoZT_GZZQrpCwPi5lfbq_FMUwR7eAke234D_k9HingohZdFKo5uejbdY0CwwUuObHTwDM1IBNIVTGNjwkhTbjfaSYExCsDSBnHnyvk5xp-ZmyuwSG-xFa2MkLmcctHhYtz"
-				/>
-				<h4 class="font-headline font-bold text-lg mb-1">Maranello Scuderia</h4>
-				<p
-					class="font-label text-xs text-on-surface-variant uppercase tracking-widest"
-				>
-					Delivered June 2024
-				</p>
-			</div>
-			<div
-				class="bg-surface-container-lowest p-6 rounded-xl hover:shadow-lg transition-all border border-transparent hover:border-outline-variant/20"
-			>
-				<img
-					class="w-full aspect-video object-cover rounded-lg mb-4"
-					data-alt="Classic vintage sports car in british racing green parked in a moody cobblestone alley"
-					src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsEuFox1xFGDY6-J6zwx3ixWQotkZrYFBdtK0FozBcYrFejhGTNOY-6c1N5lspQWZhdJ4Am5mw89jILa0DyyOE0NtbdpPZG5PnSbGXrvSt04t0--3qeEmTTI0CvCAAi6T4KLc_Uwf4KefGtfawY4OHGulM672l1JtgOKgFw-1Xup5-2xmLdmrIGABr1U8pdjybtp9dmgTkBg6EHwrPVtOgsAJlaFwrYkI-fegKvLjScEMMLFI_D7NzQlMyGRLS_idRRBXvxACUS_SO"
-				/>
-				<h4 class="font-headline font-bold text-lg mb-1">Legacy Heritage V8</h4>
-				<p
-					class="font-label text-xs text-on-surface-variant uppercase tracking-widest"
-				>
-					Delivered March 2024
-				</p>
-			</div>
-			<div
-				class="bg-surface-container-lowest p-6 rounded-xl hover:shadow-lg transition-all border border-transparent hover:border-outline-variant/20 flex flex-col justify-center items-center text-center"
-			>
-				<div
-					class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center mb-4"
-				>
-					<span class="material-symbols-outlined text-primary text-3xl"
-						>add_circle</span
-					>
-				</div>
-				<h4 class="font-headline font-bold text-lg mb-1">Add New Vehicle</h4>
-				<p
-					class="font-label text-xs text-on-surface-variant uppercase tracking-widest"
-				>
-					Register custom acquisition
-				</p>
-			</div>
-		</div>
-	</div>
+{% extends 'profile/base.html' %}
+{% load static %}
+
+{% block content %}
+<main class="px-8 py-8">
+    <!-- Header Section -->
+    <header class="mb-12">
+        <h1 class="font-headline font-extrabold text-4xl md:text-5xl tracking-tighter text-on-surface mb-4 dark:text-[#dae2fd]">
+            My Garage
+        </h1>
+        <p class="font-label text-on-surface-variant text-sm tracking-wide dark:text-[#c2c6d6]">
+            Managing your high-performance acquisitions with technical precision.
+        </p>
+    </header>
+
+    <div class="grid grid-cols-1 gap-12">
+        <!-- Buying Deals -->
+        <div>
+            <h2 class="font-headline font-bold text-2xl mb-6 text-on-surface dark:text-[#dae2fd]">Purchases</h2>
+            {% if deals %}
+                {% for deal in deals %}
+                <section class="group relative grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mb-12">
+                    <div class="lg:col-span-8 relative overflow-hidden rounded-xl bg-surface-container shadow-sm transition-transform duration-500 group-hover:scale-[1.01] dark:bg-[#111827]">
+                        {% if deal.car.image_1 %}
+                        <img class="w-full h-[400px] lg:h-[500px] object-cover" src="{{ deal.car.image_1.url }}" alt="{{ deal.car.title }}">
+                        {% else %}
+                        <div class="w-full h-[400px] lg:h-[500px] bg-surface-container-highest flex items-center justify-center">
+                            <span class="material-symbols-outlined text-5xl text-on-surface-variant">image_not_supported</span>
+                        </div>
+                        {% endif %}
+                        <div class="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <div class="absolute top-8 left-8">
+                            <span class="bg-primary text-white px-4 py-2 font-headline font-bold text-xs uppercase tracking-widest rounded-full shadow-lg dark:bg-gradient-to-br dark:from-[#d72222] dark:to-[#811ece]">
+                                {{ deal.get_status_display }}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-4 lg:-ml-12 z-10 p-6 md:p-8 bg-surface-container-lowest rounded-xl shadow-2xl border border-outline-variant/10 dark:bg-[#171f33] dark:border-[#1f2937]">
+                        <h2 class="font-headline font-bold text-2xl md:text-3xl mb-2 text-on-surface dark:text-[#dae2fd]">{{ deal.car.title }}</h2>
+                        <p class="font-label text-xs text-on-surface-variant mb-6 font-medium dark:text-[#8c909f]">ORDER ID: #{{ deal.id }}</p>
+                        <div class="space-y-4 mb-8">
+                            <div class="flex justify-between items-end border-b border-surface-container-high pb-3 dark:border-[#1f2937]">
+                                <span class="font-label text-xs uppercase text-on-surface-variant tracking-wider dark:text-[#8c909f]">Seller</span>
+                                <span class="font-headline font-semibold text-on-surface dark:text-[#dae2fd]">{{ deal.seller.first_name|default:deal.seller.username }}</span>
+                            </div>
+                            <div class="flex justify-between items-end border-b border-surface-container-high pb-3 dark:border-[#1f2937]">
+                                <span class="font-label text-xs uppercase text-on-surface-variant tracking-wider dark:text-[#8c909f]">Car</span>
+                                <span class="font-headline font-semibold text-on-surface dark:text-[#dae2fd]">{{ deal.car.brand.name }} • {{ deal.car.speed }} mph</span>
+                            </div>
+                            <div class="flex justify-between items-end border-b border-surface-container-high pb-3 dark:border-[#1f2937]">
+                                <span class="font-label text-xs uppercase text-on-surface-variant tracking-wider dark:text-[#8c909f]">Price</span>
+                                <span class="font-headline font-semibold text-primary dark:text-red-500">${{ deal.car.price }}</span>
+                            </div>
+                            <div class="flex justify-between items-end border-b border-surface-container-high pb-3 dark:border-[#1f2937]">
+                                <span class="font-label text-xs uppercase text-on-surface-variant tracking-wider dark:text-[#8c909f]">Order Date</span>
+                                <span class="font-headline font-semibold text-on-surface dark:text-[#dae2fd]">{{ deal.created_at|date:"M d, Y" }}</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col space-y-3">
+                            <a href="{% url 'delete_deal' deal.id %}" class="w-full py-3 bg-secondary-container text-on-secondary-container font-headline font-bold rounded-xl hover:bg-error hover:text-white transition-all text-center dark:bg-[#1e2a3a] dark:text-[#dae2fd] dark:hover:bg-red-600" onclick="return confirm('Delete this deal?')">
+                                Cancel Order
+                            </a>
+                        </div>
+                    </div>
+                </section>
+                {% endfor %}
+            {% else %}
+            <div class="text-center py-12 bg-surface-container-lowest rounded-xl dark:bg-[#171f33]">
+                <p class="text-on-surface-variant dark:text-[#c2c6d6]">No purchases yet</p>
+                <a href="{% url 'catalog' %}" class="inline-block mt-4 text-primary hover:underline dark:text-red-500">Browse cars</a>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Selling Deals -->
+        <div>
+            <h2 class="font-headline font-bold text-2xl mb-6 text-on-surface dark:text-[#dae2fd]">Sales</h2>
+            {% if selling_deals %}
+                {% for deal in selling_deals %}
+                <section class="group relative grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mb-12">
+                    <div class="lg:col-span-8 relative overflow-hidden rounded-xl bg-surface-container shadow-sm transition-transform duration-500 group-hover:scale-[1.01] dark:bg-[#111827]">
+                        {% if deal.car.image_1 %}
+                        <img class="w-full h-[400px] lg:h-[500px] object-cover" src="{{ deal.car.image_1.url }}" alt="{{ deal.car.title }}">
+                        {% else %}
+                        <div class="w-full h-[400px] lg:h-[500px] bg-surface-container-highest flex items-center justify-center">
+                            <span class="material-symbols-outlined text-5xl text-on-surface-variant">image_not_supported</span>
+                        </div>
+                        {% endif %}
+                        <div class="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <div class="absolute top-8 right-8">
+                            <span class="bg-tertiary text-white px-4 py-2 font-headline font-bold text-xs uppercase tracking-widest rounded-full shadow-lg">
+                                {{ deal.get_status_display }}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-4 lg:-mr-12 z-10 p-6 md:p-8 bg-surface-container-lowest rounded-xl shadow-2xl border border-outline-variant/10 dark:bg-[#171f33] dark:border-[#1f2937]">
+                        <h2 class="font-headline font-bold text-2xl md:text-3xl mb-2 text-on-surface dark:text-[#dae2fd]">{{ deal.car.title }}</h2>
+                        <p class="font-label text-xs text-on-surface-variant mb-6 font-medium dark:text-[#8c909f]">ORDER ID: #{{ deal.id }}</p>
+                        <div class="space-y-4 mb-8">
+                            <div class="flex justify-between items-end border-b border-surface-container-high pb-3 dark:border-[#1f2937]">
+                                <span class="font-label text-xs uppercase text-on-surface-variant tracking-wider dark:text-[#8c909f]">Buyer</span>
+                                <span class="font-headline font-semibold text-on-surface dark:text-[#dae2fd]">{{ deal.buyer.first_name|default:deal.buyer.username }}</span>
+                            </div>
+                            <div class="flex justify-between items-end border-b border-surface-container-high pb-3 dark:border-[#1f2937]">
+                                <span class="font-label text-xs uppercase text-on-surface-variant tracking-wider dark:text-[#8c909f]">Car</span>
+                                <span class="font-headline font-semibold text-on-surface dark:text-[#dae2fd]">{{ deal.car.brand.name }} • {{ deal.car.speed }} mph</span>
+                            </div>
+                            <div class="flex justify-between items-end border-b border-surface-container-high pb-3 dark:border-[#1f2937]">
+                                <span class="font-label text-xs uppercase text-on-surface-variant tracking-wider dark:text-[#8c909f]">Price</span>
+                                <span class="font-headline font-semibold text-primary dark:text-red-500">${{ deal.car.price }}</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col space-y-3">
+                            <form method="post" action="{% url 'update_deal' deal.id %}">
+                                {% csrf_token %}
+                                <select name="status" onchange="this.form.submit()" class="w-full py-3 px-4 bg-secondary-container text-on-secondary-container font-headline font-bold rounded-xl dark:bg-[#1e2a3a] dark:text-[#dae2fd]">
+                                    <option value="processing" {% if deal.status == 'processing' %}selected{% endif %}>Processing</option>
+                                    <option value="in_transit" {% if deal.status == 'in_transit' %}selected{% endif %}>In Transit</option>
+                                    <option value="delivered" {% if deal.status == 'delivered' %}selected{% endif %}>Delivered</option>
+                                    <option value="cancelled" {% if deal.status == 'cancelled' %}selected{% endif %}>Cancelled</option>
+                                </select>
+                            </form>
+                            <a href="{% url 'delete_deal' deal.id %}" class="w-full py-3 bg-secondary-container text-on-secondary-container font-headline font-bold rounded-xl hover:bg-error hover:text-white transition-all text-center dark:bg-[#1e2a3a] dark:text-[#dae2fd] dark:hover:bg-red-600" onclick="return confirm('Delete this deal?')">
+                                Delete Deal
+                            </a>
+                        </div>
+                    </div>
+                </section>
+                {% endfor %}
+            {% else %}
+            <div class="text-center py-12 bg-surface-container-lowest rounded-xl dark:bg-[#171f33]">
+                <p class="text-on-surface-variant dark:text-[#c2c6d6]">No sales yet</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
 </main>
 {% endblock %}

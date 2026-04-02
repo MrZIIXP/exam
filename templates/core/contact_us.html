@@ -1,4 +1,4 @@
-{% extends 'core/base.html' %} {% block style %}
+{% extends 'core/base.html' %} {% load static %} {% block style %}
 <style>
 	.material-symbols-outlined {
 		font-variation-settings:
@@ -29,11 +29,10 @@
 			<img
 				alt="Luxury car detail"
 				class="w-full h-full object-cover"
-				data-alt="close-up of a high-end luxury sports car headlight with sleek chrome details in a dimly lit cinematic studio setting"
 				src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_pOOTlO35svAi3ou3eW7RznqnGTorNjX8hJ5RYSRStJ9_5uiQDgKDH8qEKkdvej60YdeHoPqQi3kjnqL8M2HOXW7lWzYVF3M40jcTQVLKGve34habZVMnsnrKg_IcsTGsQXcaTYIVo_wZb3unI9zhGsEHK-SqUvyobiBuGGgII6Si97Ak38PWxImBuGsuSObGC3NNIkQ2RhOuf3k4tqn_P1-qB99Kc703nMmc0mvOsfzp4xrd_1qOiFc8pcp6NiJILxW5TpwR-XU7"
 			/>
 			<div
-				class="absolute inset-0 bg-gradient-to-br  from-[#ffffff]/80 to-[#ffffff]/60 dark:from-[#0b1326]/90 dark:to-[#0b1326]/40"
+				class="absolute inset-0 bg-gradient-to-br from-white/80 to-white/60 dark:from-[#0b1326]/90 dark:to-[#0b1326]/40"
 			></div>
 		</div>
 		<div class="relative z-10 w-full max-w-screen-2xl mx-auto">
@@ -50,9 +49,9 @@
 				<p
 					class="text-xl text-on-surface-variant font-light leading-relaxed max-w-xl dark:text-[#c2c6d6]"
 				>
-					At Zenith, luxury is a standard, but service is a craft. Connect with
-					our bespoke assistance team for tailored guidance on your automotive
-					journey.
+					At LUXE AUTO, luxury is a standard, but service is a craft. Connect
+					with our bespoke assistance team for tailored guidance on your
+					automotive journey.
 				</p>
 			</div>
 		</div>
@@ -74,14 +73,18 @@
 						availability updates, and heritage insights.
 					</p>
 				</div>
-				<form class="space-y-8">
+
+				<form method="post" class="space-y-8">
+					{% csrf_token %}
 					<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 						<div class="space-y-2">
 							<label
 								class="text-xs uppercase tracking-widest text-outline font-bold dark:text-[#8c909f]"
-								>Full Name</label
+								>Full Name *</label
 							>
 							<input
+								name="name"
+								required
 								class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant focus:border-blue-600 dark:focus:border-red-500 focus:ring-0 transition-colors py-4 px-0 text-on-surface placeholder:text-outline-variant dark:bg-[#060e20] dark:text-[#dae2fd] dark:border-[#424754]"
 								placeholder="Julian Vane"
 								type="text"
@@ -90,9 +93,11 @@
 						<div class="space-y-2">
 							<label
 								class="text-xs uppercase tracking-widest text-outline font-bold dark:text-[#8c909f]"
-								>Email Address</label
+								>Email Address *</label
 							>
 							<input
+								name="email"
+								required
 								class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant focus:border-blue-600 dark:focus:border-red-500 focus:ring-0 transition-colors py-4 px-0 text-on-surface placeholder:text-outline-variant dark:bg-[#060e20] dark:text-[#dae2fd] dark:border-[#424754]"
 								placeholder="concierge@vane.com"
 								type="email"
@@ -106,13 +111,14 @@
 								>Interested Model</label
 							>
 							<select
+								name="model"
 								class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant focus:border-blue-600 dark:focus:border-red-500 focus:ring-0 transition-colors py-4 px-0 text-on-surface appearance-none dark:bg-[#060e20] dark:text-[#dae2fd] dark:border-[#424754]"
 							>
-								<option>Select Model</option>
-								<option>The Zenith One</option>
-								<option>Aura GT</option>
-								<option>Eclipse Roadster</option>
-								<option>Heritage Classic</option>
+								<option value="">Select Model</option>
+								{% for car in featured_cars %}
+								<option value="{{ car.title }}">{{ car.title }}</option>
+								{% endfor %}
+								<option value="Other">Other</option>
 							</select>
 						</div>
 						<div class="space-y-2">
@@ -121,27 +127,31 @@
 								>Inquiry Type</label
 							>
 							<select
+								name="inquiry_type"
 								class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant focus:border-blue-600 dark:focus:border-red-500 focus:ring-0 transition-colors py-4 px-0 text-on-surface appearance-none dark:bg-[#060e20] dark:text-[#dae2fd] dark:border-[#424754]"
 							>
-								<option>General Support</option>
-								<option>Custom Commission</option>
-								<option>Technical Service</option>
-								<option>Event Access</option>
+								<option value="General Support">General Support</option>
+								<option value="Custom Commission">Custom Commission</option>
+								<option value="Technical Service">Technical Service</option>
+								<option value="Event Access">Event Access</option>
 							</select>
 						</div>
 					</div>
 					<div class="space-y-2">
 						<label
 							class="text-xs uppercase tracking-widest text-outline font-bold dark:text-[#8c909f]"
-							>Your Message</label
+							>Your Message *</label
 						>
 						<textarea
+							name="message"
+							required
+							rows="4"
 							class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant focus:border-blue-600 dark:focus:border-red-500 focus:ring-0 transition-colors py-4 px-0 text-on-surface placeholder:text-outline-variant resize-none dark:bg-[#060e20] dark:text-[#dae2fd] dark:border-[#424754]"
 							placeholder="Describe your requirements..."
-							rows="4"
 						></textarea>
 					</div>
 					<button
+						type="submit"
 						class="group flex items-center gap-4 text-blue-500 dark:text-red-500 font-bold uppercase tracking-widest text-sm hover:gap-6 transition-all duration-300"
 					>
 						Transmit Message
@@ -154,7 +164,6 @@
 					<img
 						alt="Interior of showroom"
 						class="w-full h-full object-cover"
-						data-alt="ultra-modern minimalist car showroom with dark marble floors and soft overhead linear lighting reflecting on a silver sports car"
 						src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEr-x0XiseRoF0Jw--jooBIU82UfdaCgfGdEMN1qsHPectMhETtfXAgMsOcul11ki4388Msb-8NT7uH-I2PyphwEi-W1pBqX6NIrphA2Hr2d9kyIy27op5E4yHv-ec_UQUK7sTPFY1_xfP_eH6WkHYIGFOBusEP2uCJgZsRs_agfSTImp9NXb5ascqNDmqhUwryP8M5XksqXANFHJAVgkwQNZmtvttkde_FkNqsGzsqta6kKkI-lhedJGGH0zNFSeYufKR_9P9U5q9"
 					/>
 				</div>
@@ -172,10 +181,10 @@
 					<p
 						class="text-sm text-on-surface-variant font-light mb-4 dark:text-[#c2c6d6]"
 					>
-						Dedicated support for established Zenith owners and private
+						Dedicated support for established LUXE AUTO owners and private
 						collection members.
 					</p>
-					<p class="text-lg font-bold dark:text-[#dae2fd]">+1 (800) ZENITH-0</p>
+					<p class="text-lg font-bold dark:text-[#dae2fd]">+1 (800) LUXE-0</p>
 				</div>
 			</div>
 		</div>
@@ -197,7 +206,6 @@
 			<div
 				class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-outline-variant/20 border border-outline-variant/20 rounded-xl overflow-hidden"
 			>
-				<!-- Showroom Card 1 -->
 				<div
 					class="bg-surface p-12 hover:bg-surface-container transition-colors duration-500 group dark:bg-[#171f33] dark:hover:bg-[#222a3d]"
 				>
@@ -231,7 +239,6 @@
 						</div>
 					</div>
 				</div>
-				<!-- Showroom Card 2 -->
 				<div
 					class="bg-surface p-12 hover:bg-surface-container transition-colors duration-500 group border-l border-outline-variant/20 dark:bg-[#171f33] dark:hover:bg-[#222a3d] dark:border-[#424754]/20"
 				>
@@ -265,7 +272,6 @@
 						</div>
 					</div>
 				</div>
-				<!-- Showroom Card 3 -->
 				<div
 					class="bg-surface p-12 hover:bg-surface-container transition-colors duration-500 group border-l border-outline-variant/20 dark:bg-[#171f33] dark:hover:bg-[#222a3d] dark:border-[#424754]/20"
 				>
@@ -308,7 +314,6 @@
 			<img
 				alt="Test drive experience"
 				class="w-full h-full object-cover grayscale opacity-30 dark:opacity-40"
-				data-alt="dramatic night shot of a dark luxury car driving through a neon-lit tunnel with long exposure light trails"
 				src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOahRNFQ0TTU33DL4jswTYKoRG8TsS0sGf95xVkKML1GISutH6bo0Shx-BpwCfOlalsLy_6hWk1_iCZDSuZDcT1EmnA3GSqWxG9kZBSppja4i8Dw0Wl7MDe_Zsihi_vFDGN6CPHZJpyAmJ9TY1CjctTx_Xwp2-qUnUP64EIcEjs083LfrZRoAI2zTwTQBtymJCiuhyy0BwsQVmrdH73mEeeP2O360HDTVUVz6dGK7NnhEHG_5vqmHT9orp80r-5_6HcUI6orzUB_EA"
 			/>
 			<div class="absolute inset-0 bg-surface/90 dark:bg-[#0b1326]/90"></div>
@@ -322,21 +327,17 @@
 			<p
 				class="text-xl text-on-surface-variant font-light mx-auto max-w-2xl dark:text-[#c2c6d6]"
 			>
-				Experience the unparalleled performance and craftsmanship of Zenith in a
-				private session. Tailored test drives are available by exclusive
+				Experience the unparalleled performance and craftsmanship of LUXE AUTO
+				in a private session. Tailored test drives are available by exclusive
 				appointment only.
 			</p>
 			<div class="flex flex-col md:flex-row gap-6 justify-center">
-				<button
+				<a
+					href="{% url 'catalog' %}"
 					class="bg-gradient-to-br from-blue-600 to-blue-800 text-white px-12 py-5 rounded-lg font-bold uppercase tracking-[0.2em] shadow-xl hover:scale-105 transition-transform dark:from-red-500 dark:to-red-800"
 				>
-					Book Test Drive
-				</button>
-				<button
-					class="border border-outline/30 px-12 py-5 rounded-lg font-bold uppercase tracking-[0.2em] hover:bg-on-surface hover:text-surface transition-colors dark:border-[#8c909f]/30 dark:text-[#c2c6d6] dark:hover:bg-[#dae2fd] dark:hover:text-[#0b1326]"
-				>
 					View Catalogue
-				</button>
+				</a>
 			</div>
 		</div>
 	</section>

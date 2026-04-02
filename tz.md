@@ -94,24 +94,24 @@
 	- trash car listing ✅
 	- view profile ✅
 	- edit profile ✅
-	- view another user's profile
+	- view another user's profile ✅
 
-	- view car details
+	- view car details ✅
 	- view catalog with filters ✅
 	
-	- add to favourites
-	- view my favourites
-	- remove from favourites
+	- add to favourites ✅
+	- view my favourites ✅
+	- remove from favourites ✅
 
-	- view reviews for a user
-	- add review for a user
-	- delete review for a user
+	- view reviews for a user ✅
+	- add review for a user ✅
+	- delete review for a user ✅
+	
+	- view my deals ✅
+	- view my selles deals ✅
+	- add deal ✅
+	- delete deal ✅
 
-	- view my deals
-	- view my selles deals
-	- add deal
-	- delete deal
-
-	- ai ask question
-	- ai history
-	- ai delete history
+	- ai ask question ✅
+	- ai history ✅
+	- ai delete history ✅

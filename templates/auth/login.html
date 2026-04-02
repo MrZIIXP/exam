@@ -286,7 +286,11 @@
 								>
 									Email Address
 								</label>
-								{{ form.email }}
+								<div
+									class="flex items-center border-b-2 border-slate-300 focus-within:border-primary transition-colors duration-300 dark:focus-within:border-[#d72222]"
+								>
+									{{ form.email }}
+								</div>
 								{% if form.email.errors %}
 								<div class="text-error text-xs mt-2 flex items-center gap-1 animate-pulse">
 									<span class="material-symbols-outlined text-xs">error</span>
@@ -304,18 +308,9 @@
 									Password
 								</label>
 								<div
-									class="flex items-center border-b-2 {% if form.password.errors %}input-error border-error{% else %}border-outline-variant/20{% endif %} focus-within:border-primary transition-colors duration-300 dark:focus-within:border-[#d72222]"
+									class="flex items-center border-b-2 border-slate-300 {% if form.password.errors %}input-error border-error{% else %}border-outline-variant/20{% endif %} focus-within:border-primary transition-colors duration-300 dark:focus-within:border-[#d72222]"
 								>
 									{{ form.password }}
-									<button
-										class="text-outline hover:text-on-surface transition-colors dark:text-[#8c909f] dark:hover:text-[#dae2fd] toggle-password"
-										type="button"
-										data-target="id_password"
-									>
-										<span class="material-symbols-outlined text-lg"
-											>visibility</span
-										>
-									</button>
 								</div>
 								{% if form.password.errors %}
 								<div class="text-error text-xs mt-2 flex items-center gap-1 animate-pulse">

@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-j$y^fjc+y1lz+twe#vk6x5hrjyj(mv$t$fy_l_sn%0p5w!!z8_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 
@@ -45,14 +45,11 @@ INSTALLED_APPS = [
     'favourites',
     'deals',
     'review',
-    'tailwind',
-    'theme'
 ]
 
-TAILWIND_APP_NAME = 'theme'
 
 AUTH_USER_MODEL = 'accounts.User'
-
+MESSAGE_STORAGE = 'context.storage.LimitedMessageStorage'
 MIDDLEWARE = [
     'django.middleware.common.BrokenLinkEmailsMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -78,6 +75,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'context.account.user',
                 'context.url_page.page',
+                'context.ai.ai',
             ],
         },
     },

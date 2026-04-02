@@ -33,12 +33,6 @@
 				<h2 class="font-headline font-bold text-xl text-on-surface">
 					Active Inventory ({{ cars.count }})
 				</h2>
-				<button
-					class="text-primary text-sm font-bold flex items-center gap-1 hover:underline"
-				>
-					<span class="material-symbols-outlined text-sm">filter_list</span>
-					Filter
-				</button>
 			</div>
 			{% for car in cars %}
 			<div
@@ -136,20 +130,6 @@
 							<p id="car-id-display" class="font-body opacity-90 text-sm">
 								Listing ID: ---
 							</p>
-						</div>
-						<div class="absolute top-6 right-8 flex gap-3">
-							<button
-								type="button"
-								class="bg-white/20 backdrop-blur-md text-white p-2 rounded-full hover:bg-white/30 transition-all"
-							>
-								<span class="material-symbols-outlined">share</span>
-							</button>
-							<button
-								type="button"
-								class="bg-white/20 backdrop-blur-md text-white p-2 rounded-full hover:bg-white/30 transition-all"
-							>
-								<span class="material-symbols-outlined">more_vert</span>
-							</button>
 						</div>
 					</div>
 

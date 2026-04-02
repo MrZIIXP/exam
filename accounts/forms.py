@@ -128,7 +128,7 @@ class LoginForm(forms.Form):
         required=True,
         widget=forms.EmailInput(attrs={
             'placeholder': 'A.STERLING@PRECISION.COM',
-            'class': 'w-full bg-transparent border-none border-b-2 border-outline-variant/20 py-3 text-on-surface font-medium placeholder:text-outline-variant/50 focus:ring-0 focus:border-primary transition-colors duration-300 dark:text-[#dae2fd] dark:focus:border-[#d72222] dark:placeholder:text-[#8c909f]/50',
+            'class': 'flex-1 bg-transparent border-none  py-3 text-on-surface font-medium placeholder:text-outline-variant/50 focus:ring-0 dark:text-[#dae2fd] dark:placeholder:text-[#8c909f]/50',
             'autocomplete': 'email',
         })
     )

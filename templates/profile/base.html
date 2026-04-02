@@ -1,10 +1,10 @@
-{% load static %}
+<!-- {% load static %} -->
 <!doctype html>
 <html class="light" lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-		<link rel="stylesheet" href="{% static 'css/dist/styles.css' %}" />
+		<!-- <link rel="stylesheet" href="{% static 'css/dist/styles.css' %}" /> -->
 		<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 		<link
 			href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap"
@@ -234,9 +234,9 @@
 		</style>
 		{% endblock %}
 	</head>
-	<body class="antialiased selection:bg-primary">
+	<body class="antialiased overflow-x-hidden selection:bg-primary">
 		<nav
-			class="fixed top-0 w-full z-50 glass-nav shadow-sm dark:shadow-none bg-surface/80 backdrop-blur-xl"
+			class="fixed z-[100] top-0 w-full glass-nav shadow-sm dark:shadow-none bg-surface/80 backdrop-blur-xl"
 		>
 			<div class="flex justify-between items-center px-8 py-4 max-w-full">
 				<div class="flex items-center gap-12">
@@ -285,16 +285,6 @@
 					>
 						dark_mode
 					</button>
-					<div
-						class="h-10 w-10 rounded-full overflow-hidden border-2 border-primary/10 dark:border-primary/30"
-					>
-						<img
-							alt="User profile avatar"
-							class="w-full h-full object-cover"
-							data-alt="close-up portrait of a professional man in a sharp suit looking confidently at the camera, clean studio lighting"
-							src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYt1odE_5BqK7NHoqizbKv-GmF2i3pl-TrRZDc8eLAq1aFqApoDGbbU1-qJ4B3STZR0vbpTa4xD0jTpLvW4ILbNSrKqkoPCe3aDHlYzeUI2t5jbCO5xu86blqNA9o7NZ0aO3dr5sDJa5UfP_tRxF-aTwX4uK2J2gB6SGqfWJ4BQQn8Zh88ABByjW3SCOjcBePMQTfFqh0ThFWJ2_YFbL1X6L9yQ5RvdfnJcX0sWSMpARgRCc0RRu0OC2SXxkrb6fR8guQ65YJXn40a"
-						/>
-					</div>
 				</div>
 			</div>
 		</nav>
@@ -302,7 +292,7 @@
 		<!-- Messages Container -->
 		<div
 			id="messages-container"
-			class="fixed top-24 right-4 z-50 flex flex-col gap-3 max-w-md"
+			class="fixed top-24 right-4 z-[90] flex flex-col gap-3 max-w-md"
 		>
 			{% if messages %} {% for message in messages %}
 			<div
@@ -378,7 +368,7 @@
 					</a>
 					<a
 						class="flex items-center gap-4 px-4 py-3 rounded-xl {% if page == '/profile/favourite/' %} text-blue-700 dark:text-red-600 bg-secondary-container dark:bg-red-600/10 {% else %} text-slate-600 dark:text-[#c2c6d6] hover:bg-surface-container-low dark:hover:bg-[#1f2937] {% endif %} transition-all"
-						href="#"
+						href="{% url 'favourites' %}"
 					>
 						<span class="material-symbols-outlined">favorite</span>
 						<span>Favorites</span>
@@ -420,7 +410,7 @@
 					</div>
 				</div>
 			</aside>
-			<div class="w-full pl-[20%] pt-22">{% block content %}{% endblock %}</div>
+			<div class="w-full pl-[20%] pt-[70px]">{% block content %}{% endblock %}</div>
 		</main>
 
 		<footer
